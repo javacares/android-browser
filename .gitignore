@@ -1,0 +1,8 @@
+build/generated/
+build/
+app/build
+.gradle/
+.idea/
+android-browser.iml
+local.properties
+
