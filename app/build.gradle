@@ -5,12 +5,12 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.android.browser"
+        applicationId "com.baohume.browser"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 100
         versionName "1.0.0"
-        testApplicationId "com.android.browser.tests"
+        testApplicationId "com.baohume.browser.tests"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
 

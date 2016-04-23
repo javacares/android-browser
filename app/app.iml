@@ -110,8 +110,8 @@
     <orderEntry type="library" exported="" name="appcompat-v7-23.3.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="hamcrest-core-1.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="junit-4.12" level="project" />
-    <orderEntry type="library" exported="" name="butterknife-6.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.3.0" level="project" />
+    <orderEntry type="library" exported="" name="butterknife-6.1.0" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-23.3.0" level="project" />
     <orderEntry type="library" exported="" name="android-preference-activity-4.2.2" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="objenesis-2.1" level="project" />

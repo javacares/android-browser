@@ -16,9 +16,9 @@
  */
 -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.android.browser">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.baohume.browser">
 
-    <original-package android:name="com.android.browser" />
+    <original-package android:name="com.baohume.browser" />
 
     <permission android:name="com.android.browser.permission.PRELOAD"
         android:label="@string/permission_preload_label"
@@ -50,16 +50,16 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
 
-    <application   android:name="Browser"
+    <application   android:name="com.baohume.browser.Browser"
                    android:label="@string/application_name"
                    android:icon="@mipmap/ic_launcher_browser"
-                   android:backupAgent=".BrowserBackupAgent"
+                   android:backupAgent="com.baohume.browser.BrowserBackupAgent"
                    android:hardwareAccelerated="true"
                    android:taskAffinity="android.task.browser"
                    android:usesCleartextTraffic="true" >
 
-        <provider android:name=".provider.BrowserProvider2"
-                  android:authorities="com.android.browser;browser"
+        <provider android:name="com.baohume.browser.provider.BrowserProvider2"
+                  android:authorities="com.baohume.browser;browser"
                   android:multiprocess="false"
                   android:exported="true"
                   android:readPermission="com.android.browser.permission.READ_HISTORY_BOOKMARKS"
@@ -67,7 +67,7 @@
             <path-permission android:path="/bookmarks/search_suggest_query"
                     android:readPermission="android.permission.GLOBAL_SEARCH" />
         </provider>
-        <activity android:name="BrowserActivity"
+        <activity android:name="com.baohume.browser.BrowserActivity"
                   android:label="@string/application_name"
                   android:launchMode="singleTask"
                   android:alwaysRetainTaskState="true"
@@ -144,7 +144,7 @@
                     android:resource="@xml/searchable" />
         </activity>
 
-        <activity android:name="ShortcutActivity"
+        <activity android:name="com.baohume.browser.ShortcutActivity"
             android:theme="@style/ShortcutTheme"
             android:label="@string/shortcut_bookmark"
             android:icon="@mipmap/ic_launcher_shortcut_browser_bookmark">
@@ -156,14 +156,14 @@
 
         </activity>
 
-        <activity android:name="BrowserPreferencesPage" android:label="@string/menu_preferences">
+        <activity android:name="com.baohume.browser.BrowserPreferencesPage" android:label="@string/menu_preferences">
             <intent-filter>
                <action android:name="android.intent.action.MANAGE_NETWORK_USAGE" />
                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name="BookmarkSearch"
+        <activity android:name="com.baohume.browser.BookmarkSearch"
                   android:label="@string/bookmarks_search"
                   android:stateNotNeeded="true"
                   android:theme="@android:style/Theme.NoDisplay"
@@ -176,7 +176,7 @@
                     android:resource="@xml/bookmarks_searchable" />
         </activity>
 
-        <activity android:name="AddBookmarkPage" android:label="@string/bookmarks_add_page"
+        <activity android:name="com.baohume.browser.AddBookmarkPage" android:label="@string/bookmarks_add_page"
                   android:theme="@style/DialogWhenLarge"
                   android:configChanges="orientation|keyboardHidden|screenSize"
                   android:windowSoftInputMode="adjustResize">
@@ -187,12 +187,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="ComboViewActivity">
+        <activity android:name="com.baohume.browser.ComboViewActivity">
         </activity>
 
         <!-- Bookmark thumbnail homescreen widget -->
         <receiver
-            android:name=".widget.BookmarkThumbnailWidgetProvider"
+            android:name="com.baohume.browser.widget.BookmarkThumbnailWidgetProvider"
             android:label="@string/bookmarks">
             <intent-filter>
                 <action
@@ -205,13 +205,13 @@
                 android:resource="@xml/bookmarkthumbnailwidget_info" />
         </receiver>
         <service
-            android:name=".widget.BookmarkThumbnailWidgetService"
+            android:name="com.baohume.browser.widget.BookmarkThumbnailWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS"
             android:exported="false" />
         <receiver
-            android:name=".widget.BookmarkWidgetProxy"
+            android:name="com.baohume.browser.widget.BookmarkWidgetProxy"
             android:exported="false" />
-        <activity android:name=".widget.BookmarkWidgetConfigure"
+        <activity android:name="com.baohume.browser.widget.BookmarkWidgetConfigure"
             android:theme="@android:style/Theme.Holo.DialogWhenLarge">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
@@ -229,7 +229,7 @@
         <meta-data android:name="com.google.android.partnersetup.RLZ_ACCESS_POINT"
                    android:value="@string/rlz_access_point" />
 
-        <receiver android:name=".OpenDownloadReceiver">
+        <receiver android:name="com.baohume.browser.OpenDownloadReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED"/>
             </intent-filter>
@@ -237,18 +237,18 @@
 
         <!-- For custom home pages (like most visited) -->
         <provider
-            android:name=".homepages.HomeProvider"
-            android:authorities="com.android.browser.home"
+            android:name="com.baohume.browser.homepages.HomeProvider"
+            android:authorities="com.baohume.browser.home"
             android:readPermission="com.android.browser.permission.READ_HISTORY_BOOKMARKS"
             android:exported="false" />
 
-        <receiver android:name=".AccountsChangedReceiver">
+        <receiver android:name="com.baohume.browser.AccountsChangedReceiver">
             <intent-filter>
                 <action android:name="android.accounts.LOGIN_ACCOUNTS_CHANGED" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".PreloadRequestReceiver"
+        <receiver android:name="com.baohume.browser.PreloadRequestReceiver"
              android:permission="com.android.browser.permission.PRELOAD" >
              <intent-filter>
                  <action android:name="android.intent.action.PRELOAD"/>
@@ -256,8 +256,8 @@
              </intent-filter>
          </receiver>
 
-        <provider android:name=".provider.SnapshotProvider"
-                  android:authorities="com.android.browser.snapshots"
+        <provider android:name="com.baohume.browser.provider.SnapshotProvider"
+                  android:authorities="com.baohume.browser.snapshots"
                   android:exported="false" />
 
         <provider android:name="android.support.v4.content.FileProvider"
