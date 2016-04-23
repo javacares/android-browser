@@ -495,7 +495,7 @@ public class AddBookmarkPage extends Activity
         switch (loader.getId()) {
             case LOADER_ID_ACCOUNTS:
                 mAccountAdapter.clear();
-                while (cursor.moveToNext()) {
+                while (null != cursor && cursor.moveToNext()) {
                     mAccountAdapter.add(new BookmarkAccount(this, cursor));
                 }
                 getLoaderManager().destroyLoader(LOADER_ID_ACCOUNTS);

@@ -50,7 +50,7 @@ public class BookmarkThumbnailWidgetService extends RemoteViewsService {
 
     static final String TAG = "BookmarkThumbnailServic";
     static final String ACTION_CHANGE_FOLDER
-            = "com.android.browser.widget.CHANGE_FOLDER";
+            = "com.baohume.browser.widget.CHANGE_FOLDER";
 
     static final String STATE_CURRENT_FOLDER = "current_folder";
     static final String STATE_ROOT_FOLDER = "root_folder";

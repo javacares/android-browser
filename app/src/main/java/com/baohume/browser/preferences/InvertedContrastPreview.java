@@ -22,7 +22,7 @@ import android.util.AttributeSet;
 
 public class InvertedContrastPreview extends WebViewPreview {
 
-    static final String IMG_ROOT = "content://com.android.browser.home/res/raw/";
+    static final String IMG_ROOT = "content://com.baohume.browser.home/res/raw/";
     static final String[] THUMBS = new String[] {
         "thumb_google",
         "thumb_amazon",

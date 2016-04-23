@@ -323,7 +323,7 @@ public class BreadCrumbView extends LinearLayout implements OnClickListener {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int height = mSeparatorDrawable.getIntrinsicHeight();
+        int height = null == mSeparatorDrawable ? 0 : mSeparatorDrawable.getIntrinsicHeight();
         if (getMeasuredHeight() < height) {
             // This should only be an issue if there are currently no separators
             // showing; i.e. if there is one crumb and no back button.

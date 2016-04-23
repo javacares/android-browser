@@ -44,7 +44,7 @@ import android.util.Pair;
  */
 public class BrowserContract {
     /** The authority for the browser provider */
-    public static final String AUTHORITY = "com.android.browser";
+    public static final String AUTHORITY = "com.baohume.browser";
 
     /** A content:// style uri to the authority for the browser provider */
     public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
