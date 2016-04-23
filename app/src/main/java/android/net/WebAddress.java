@@ -63,7 +63,7 @@ public class WebAddress {
             /* anchor    */ ".*", Pattern.CASE_INSENSITIVE);
 
     /** parses given uriString. */
-    public WebAddress(String address) throws ParseException {
+    public WebAddress(String address) throws com.baohume.common.ParseException {
         if (address == null) {
             throw new NullPointerException();
         }
@@ -91,7 +91,7 @@ public class WebAddress {
                 try {
                     mPort = Integer.parseInt(t);
                 } catch (NumberFormatException ex) {
-                    throw new ParseException("Bad port");
+                    throw new com.baohume.common.ParseException("Bad port");
                 }
             }
             t = m.group(MATCH_GROUP_PATH);
@@ -107,7 +107,7 @@ public class WebAddress {
 
         } else {
             // nothing found... outa here
-            throw new ParseException("Bad address");
+            throw new com.baohume.common.ParseException("Bad address");
         }
 
         /* Get port from scheme or scheme from port, if necessary and

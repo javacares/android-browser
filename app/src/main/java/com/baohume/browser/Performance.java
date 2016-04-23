@@ -21,6 +21,7 @@ import android.os.Debug;
 import android.os.SystemClock;
 import android.util.Log;
 
+import com.baohume.common.ParseException;
 import com.baohume.common.Process;
 
 /**
@@ -62,7 +63,7 @@ public class Performance {
             try {
                 WebAddress uri = new WebAddress(url);
                 host = uri.getHost();
-            } catch (android.net.ParseException ex) {
+            } catch (ParseException ex) {
                 host = "browser";
             }
             host = host.replace('.', '_');

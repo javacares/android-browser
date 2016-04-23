@@ -26,7 +26,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import android.os.FileUtils;
+import com.baohume.browser.util.FileUtils;
 import com.baohume.provider.BrowserContract;
 import android.text.TextUtils;
 

@@ -33,7 +33,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.ParseException;
+import com.baohume.common.ParseException;
 import android.net.Uri;
 import android.net.WebAddress;
 import android.os.AsyncTask;

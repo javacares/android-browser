@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package android.os;
+package com.baohume.browser.util;
 
 import android.util.Log;
 

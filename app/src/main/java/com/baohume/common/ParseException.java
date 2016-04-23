@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package android.net;
+package com.baohume.common;
 
 /**
  * Thrown when parsing a URL fails.
@@ -23,7 +23,7 @@ package android.net;
 public class ParseException extends RuntimeException {
     public String response;
 
-    ParseException(String response) {
+    public ParseException(String response) {
         this.response = response;
     }
 }
