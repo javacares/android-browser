@@ -17,8 +17,9 @@
 package com.baohume.browser;
 
 import android.content.Context;
-import android.content.CursorLoader;
 import android.net.Uri;
+import android.support.v4.content.CursorLoader;
+
 import com.baohume.provider.BrowserContract.Bookmarks;
 
 public class BookmarksLoader extends CursorLoader {

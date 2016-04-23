@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.ContextMenu;
@@ -36,7 +37,7 @@ import android.view.Window;
 
 import com.baohume.browser.stub.NullController;
 
-public class BrowserActivity extends Activity {
+public class BrowserActivity extends AppCompatActivity {
 
     public static final String ACTION_SHOW_BOOKMARKS = "show_bookmarks";
     public static final String ACTION_SHOW_BROWSER = "show_browser";

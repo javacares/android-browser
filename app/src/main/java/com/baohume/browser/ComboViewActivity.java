@@ -15,22 +15,23 @@
  */
 package com.baohume.browser;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.baohume.common.AppActivity;
+
 import java.util.ArrayList;
 
-public class ComboViewActivity extends Activity implements CombinedBookmarksCallbacks {
+public class ComboViewActivity extends AppActivity implements CombinedBookmarksCallbacks {
 
     private static final String STATE_SELECTED_TAB = "tab";
     public static final String EXTRA_COMBO_ARGS = "combo_args";
@@ -56,14 +57,14 @@ public class ComboViewActivity extends Activity implements CombinedBookmarksCall
         mViewPager.setId(R.id.tab_view);
         setContentView(mViewPager);
 
-        final ActionBar bar = getActionBar();
+        final ActionBar bar = getSupportActionBar();
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         if (BrowserActivity.isTablet(this)) {
-            bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME
-                    | ActionBar.DISPLAY_USE_LOGO);
+            bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_USE_LOGO);
             bar.setHomeButtonEnabled(true);
         } else {
-            bar.setDisplayOptions(0);
+            bar.setDisplayHomeAsUpEnabled(true);
+            bar.setHomeButtonEnabled(true);
         }
 
         mTabsAdapter = new TabsAdapter(this, mViewPager);
@@ -173,10 +174,10 @@ public class ComboViewActivity extends Activity implements CombinedBookmarksCall
             }
         }
 
-        public TabsAdapter(Activity activity, ViewPager pager) {
-            super(activity.getFragmentManager());
+        public TabsAdapter(AppActivity activity, ViewPager pager) {
+            super(activity.getSupportFragmentManager());
             mContext = activity;
-            mActionBar = activity.getActionBar();
+            mActionBar = activity.getSupportActionBar();
             mViewPager = pager;
             mViewPager.setAdapter(this);
             mViewPager.setOnPageChangeListener(this);
@@ -216,8 +217,7 @@ public class ComboViewActivity extends Activity implements CombinedBookmarksCall
         }
 
         @Override
-        public void onTabSelected(android.app.ActionBar.Tab tab,
-                FragmentTransaction ft) {
+        public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
             Object tag = tab.getTag();
             for (int i=0; i<mTabs.size(); i++) {
                 if (mTabs.get(i) == tag) {
@@ -227,14 +227,15 @@ public class ComboViewActivity extends Activity implements CombinedBookmarksCall
         }
 
         @Override
-        public void onTabUnselected(android.app.ActionBar.Tab tab,
-                FragmentTransaction ft) {
+        public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
         }
 
         @Override
-        public void onTabReselected(android.app.ActionBar.Tab tab,
-                FragmentTransaction ft) {
+        public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
         }
+
     }
 
     private static String makeFragmentName(int viewId, int index) {

@@ -16,14 +16,15 @@
 
 package com.baohume.browser;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public class ShortcutActivity extends Activity
+import com.baohume.common.AppActivity;
+
+public class ShortcutActivity extends AppActivity
     implements BookmarksPageCallbacks, OnClickListener {
 
     private BrowserBookmarksPage mBookmarks;
@@ -33,8 +34,7 @@ public class ShortcutActivity extends Activity
         super.onCreate(savedInstanceState);
         setTitle(R.string.shortcut_bookmark_title);
         setContentView(R.layout.pick_bookmark);
-        mBookmarks = (BrowserBookmarksPage) getFragmentManager()
-                .findFragmentById(R.id.bookmarks);
+        mBookmarks = (BrowserBookmarksPage)getSupportFragmentManager().findFragmentById(R.id.bookmarks);
         mBookmarks.setEnableContextMenu(false);
         mBookmarks.setCallbackListener(this);
         View cancel = findViewById(R.id.cancel);

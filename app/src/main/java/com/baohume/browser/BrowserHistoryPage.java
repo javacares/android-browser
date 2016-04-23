@@ -19,16 +19,12 @@ package com.baohume.browser;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.app.FragmentBreadCrumbs;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
@@ -41,6 +37,11 @@ import android.os.Bundle;
 import com.baohume.provider.Browser;
 import com.baohume.provider.BrowserContract;
 import com.baohume.provider.BrowserContract.Combined;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -67,7 +68,7 @@ import android.widget.Toast;
  * days of viewing.
  */
 public class BrowserHistoryPage extends Fragment
-        implements LoaderCallbacks<Cursor>, OnChildClickListener {
+        implements LoaderManager.LoaderCallbacks<Cursor>, OnChildClickListener {
 
     static final int LOADER_HISTORY = 1;
     static final int LOADER_MOST_VISITED = 2;

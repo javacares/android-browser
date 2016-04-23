@@ -19,18 +19,18 @@ import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.Fragment;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -53,7 +53,7 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class BrowserSnapshotPage extends Fragment implements
-        LoaderCallbacks<Cursor>, OnItemClickListener {
+        LoaderManager.LoaderCallbacks<Cursor>, OnItemClickListener {
 
     public static final String EXTRA_ANIMATE_ID = "animate_id";
 
