@@ -40,9 +40,18 @@
     <style name="BrowserTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="scrollViewStyle">@style/ScrollViewStyle</item>
     </style>
 
-    <style name="DialogWhenLarge" parent="@android:style/Theme.Holo.DialogWhenLarge" >
+    <style name="PopupMenuStyle" parent="Theme.AppCompat.Light">
+        <item name="android:popupBackground">@android:color/white</item>
+        <item name="android:fillViewport">true</item>
+    </style>
+
+    <style name="ScrollViewStyle">
+
+    </style>
+    <style name="DialogWhenLarge" parent="Theme.AppCompat.Light.DialogWhenLarge" >
         <item name="android:windowActionBar">false</item>
     </style>
 
@@ -112,4 +121,5 @@
         <item name="android:imeOptions">flagNoExtractUi|actionNext</item>
         <item name="android:singleLine">true</item>
     </style>
+
 </resources>

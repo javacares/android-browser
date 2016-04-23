@@ -336,8 +336,7 @@ public abstract class BaseUi implements UI {
         WebView mainView  = tab.getWebView();
         // Attach the WebView to the container and then attach the
         // container to the content view.
-        FrameLayout wrapper =
-                (FrameLayout) container.findViewById(R.id.webview_wrapper);
+        FrameLayout wrapper = (FrameLayout) container.findViewById(R.id.webview_wrapper);
         ViewGroup parent = (ViewGroup) mainView.getParent();
         if (parent != wrapper) {
             if (parent != null) {
@@ -366,8 +365,7 @@ public abstract class BaseUi implements UI {
         // Remove the container from the content and then remove the
         // WebView from the container. This will trigger a focus change
         // needed by WebView.
-        FrameLayout wrapper =
-                (FrameLayout) container.findViewById(R.id.webview_wrapper);
+        FrameLayout wrapper = (FrameLayout) container.findViewById(R.id.webview_wrapper);
         wrapper.removeView(mainView);
         mContentView.removeView(container);
         mUiController.endActionMode();

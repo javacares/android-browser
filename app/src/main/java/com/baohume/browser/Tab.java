@@ -1850,18 +1850,16 @@ class Tab implements PictureListener {
         c.restoreToCount(state);
         // manually anti-alias the edges for the tilt
         c.drawRect(0, 0, 1, mCapture.getHeight(), sAlphaPaint);
-        c.drawRect(mCapture.getWidth() - 1, 0, mCapture.getWidth(),
-                mCapture.getHeight(), sAlphaPaint);
+        c.drawRect(mCapture.getWidth() - 1, 0,mCapture.getWidth(),mCapture.getHeight(),sAlphaPaint);
         c.drawRect(0, 0, mCapture.getWidth(), 1, sAlphaPaint);
-        c.drawRect(0, mCapture.getHeight() - 1, mCapture.getWidth(),
-                mCapture.getHeight(), sAlphaPaint);
+        c.drawRect(0,mCapture.getHeight() - 1,mCapture.getWidth(),mCapture.getHeight(),sAlphaPaint);
         c.setBitmap(null);
+
         mHandler.removeMessages(MSG_CAPTURE);
         persistThumbnail();
         TabControl tc = mWebViewController.getTabControl();
         if (tc != null) {
-            OnThumbnailUpdatedListener updateListener
-                    = tc.getOnThumbnailUpdatedListener();
+            OnThumbnailUpdatedListener updateListener = tc.getOnThumbnailUpdatedListener();
             if (updateListener != null) {
                 updateListener.onThumbnailUpdated(this);
             }

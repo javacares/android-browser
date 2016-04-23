@@ -96,8 +96,7 @@ public class NavTabScroller extends ScrollerView {
                 new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
         // ProGuard !
         setGap(getGap());
-        mFlingVelocity = getContext().getResources().getDisplayMetrics().density
-                * MIN_VELOCITY;
+        mFlingVelocity = getContext().getResources().getDisplayMetrics().density * MIN_VELOCITY;
     }
 
     protected int getScrollValue() {
@@ -135,7 +134,7 @@ public class NavTabScroller extends ScrollerView {
     }
 
     private void calcPadding() {
-        if (mAdapter.getCount() > 0) {
+        if (null != mAdapter && mAdapter.getCount() > 0) {
             View v = mContentView.getChildAt(0);
             if (mHorizontal) {
                 int pad = (getMeasuredWidth() - v.getMeasuredWidth()) / 2 + 2;

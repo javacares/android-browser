@@ -44,4 +44,5 @@
     <!--<color name="colorAccent">#FF4081</color>-->
     <color name="colorAccent">#ffff8a00</color>
 
+    <color name="nav_screen_bg">#CC0d0e0e</color>
 </resources>
