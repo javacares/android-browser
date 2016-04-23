@@ -102,7 +102,8 @@ public class TitleBar extends RelativeLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (mIsFixedTitleBar) {
-            int margin = getMeasuredHeight() - calculateEmbeddedHeight();
+            //TODO QIJB fixed bug, fullscreen error when back/forth
+            int margin = getMeasuredHeight() - getEmbeddedHeight();
             mBaseUi.setContentViewMarginTop(-margin);
         } else {
             mBaseUi.setContentViewMarginTop(0);

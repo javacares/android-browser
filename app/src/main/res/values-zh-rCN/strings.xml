@@ -53,6 +53,14 @@
     <string name="sha256_fingerprint" msgid="4391271286477279263">"SHA-256 指纹："</string>
     <string name="sha1_fingerprint" msgid="7930330235269404581">"SHA-1 指纹："</string>
 
+    <string name="find_on_page" msgid="1946799233822820384">"在网页上查找"</string>
+    <string name="no_matches" msgid="8129421908915840737">"无匹配项"</string>
+
+    <plurals name="matches_found">
+        <item quantity="one" msgid="8167147081136579439">"1 个匹配项"</item>
+        <item quantity="other" msgid="4641872797067609177">"第 <xliff:g id="INDEX">%d</xliff:g> 项，共 <xliff:g id="TOTAL">%d</xliff:g> 项"</item>
+    </plurals>
+
     <string name="ssl_warnings_header" msgid="79744901983636370">"该网站的安全证书有问题。"</string>
     <string name="ssl_continue" msgid="8031515015829358457">"继续"</string>
     <string name="security_warning" msgid="6607795404322797541">"安全警告"</string>

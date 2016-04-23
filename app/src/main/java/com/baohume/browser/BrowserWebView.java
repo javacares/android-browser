@@ -168,7 +168,8 @@ public class BrowserWebView extends WebView {
 
     //TOOD QIJB add
     public int getVisibleTitleHeight() {
-        return super.getHeight();
+        // This is deprecated in WebView and should always return 0.
+        return 0;
     }
 
     //TODO QIJB added for compiling problem

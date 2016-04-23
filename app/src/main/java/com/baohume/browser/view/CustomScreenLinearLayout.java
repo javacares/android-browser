@@ -34,8 +34,7 @@ public class CustomScreenLinearLayout extends LinearLayout {
         setChildrenDrawingOrderEnabled(true);
     }
 
-    public CustomScreenLinearLayout(Context context, AttributeSet attrs,
-            int defStyle) {
+    public CustomScreenLinearLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setChildrenDrawingOrderEnabled(true);
     }

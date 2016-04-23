@@ -322,4 +322,9 @@ public class UrlInputView extends AutoCompleteTextView
     @Override
     public void afterTextChanged(Editable s) { }
 
+
+    @Override
+    public void setText(CharSequence text, boolean filter) {
+        super.setText(text, filter);
+    }
 }

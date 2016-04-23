@@ -139,7 +139,7 @@ public class PhoneUi extends BaseUi {
             detachTab(mActiveTab);
         }
 
-        BrowserWebView view = (BrowserWebView) tab.getWebView();
+        BrowserWebView view = tab.getWebView();
         // TabControl.setCurrentTab has been called before this,
         // so the tab is guaranteed to have a webview
         if (view == null) {

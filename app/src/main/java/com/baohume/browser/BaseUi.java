@@ -125,21 +125,14 @@ public abstract class BaseUi implements UI {
         mLockIconMixed = res.getDrawable(R.drawable.ic_secure_partial_holo_dark);
         FrameLayout frameLayout = (FrameLayout) mActivity.getWindow()
                 .getDecorView().findViewById(android.R.id.content);
-        LayoutInflater.from(mActivity)
-                .inflate(R.layout.custom_screen, frameLayout);
-        mFixedTitlebarContainer = (FrameLayout) frameLayout.findViewById(
-                R.id.fixed_titlebar_container);
-        mContentView = (FrameLayout) frameLayout.findViewById(
-                R.id.main_content);
-        mCustomViewContainer = (FrameLayout) frameLayout.findViewById(
-                R.id.fullscreen_custom_content);
-        mErrorConsoleContainer = (LinearLayout) frameLayout
-                .findViewById(R.id.error_console);
+        LayoutInflater.from(mActivity).inflate(R.layout.custom_screen, frameLayout);
+        mFixedTitlebarContainer = (FrameLayout)frameLayout.findViewById(R.id.fixed_titlebar_container);
+        mContentView = (FrameLayout) frameLayout.findViewById(R.id.main_content);
+        mCustomViewContainer = (FrameLayout)frameLayout.findViewById(R.id.fullscreen_custom_content);
+        mErrorConsoleContainer = (LinearLayout) frameLayout.findViewById(R.id.error_console);
         setFullscreen(BrowserSettings.getInstance().useFullscreen());
-        mGenericFavicon = res.getDrawable(
-                R.drawable.app_web_browser_sm);
-        mTitleBar = new TitleBar(mActivity, mUiController, this,
-                mContentView);
+        mGenericFavicon = res.getDrawable(R.drawable.app_web_browser_sm);
+        mTitleBar = new TitleBar(mActivity, mUiController, this, mContentView);
         mTitleBar.setProgress(100);
         mNavigationBar = mTitleBar.getNavigationBar();
         mUrlBarAutoShowManager = new UrlBarAutoShowManager(this);
@@ -854,11 +847,10 @@ public abstract class BaseUi implements UI {
     }
 
     public void setContentViewMarginTop(int margin) {
-        LinearLayout.LayoutParams params =
-                (LinearLayout.LayoutParams) mContentView.getLayoutParams();
-        if (params.topMargin != margin) {
-            params.topMargin = margin;
-            mContentView.setLayoutParams(params);
+        LinearLayout.LayoutParams param = (LinearLayout.LayoutParams)mContentView.getLayoutParams();
+        if (param.topMargin != margin) {
+            param.topMargin = margin;
+            mContentView.setLayoutParams(param);
         }
     }
 
