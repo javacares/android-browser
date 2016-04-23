@@ -1714,7 +1714,7 @@ public class Controller implements WebViewController, UiController, ActivityCont
 
     @Override
     public void openPreferences() {
-        Intent intent = new Intent(mActivity, BrowserPreferencesPage.class);
+        Intent intent = new Intent(mActivity, SettingsActivity.class);
         intent.putExtra(BrowserPreferencesPage.CURRENT_PAGE,
                 getCurrentTopWebView().getUrl());
         mActivity.startActivityForResult(intent, PREFERENCES_PAGE);

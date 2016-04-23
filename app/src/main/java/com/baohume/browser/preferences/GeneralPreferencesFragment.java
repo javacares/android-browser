@@ -81,7 +81,7 @@ public class GeneralPreferencesFragment extends PreferenceFragment
         if (getActivity() == null) {
             // We aren't attached, so don't accept preferences changes from the
             // invisible UI.
-            Log.w("PageContentPreferencesFragment", "onPreferenceChange called from detached fragment!");
+            Log.w("GeneralPreferences", "onPreferenceChange called from detached fragment!");
             return false;
         }
 

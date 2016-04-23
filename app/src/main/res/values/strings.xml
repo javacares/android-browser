@@ -1061,4 +1061,39 @@
     <string name="accessibility_button_bookmarks_folder_up">Previous folder</string>
     <string name="sendText">Send</string>
 
+
+    <!-- Preference setting values -->
+    <!-- suppress MissingTranslation -->
+    <string name="toolbar_elevation_preference_key">toolbar_elevation_preference_key</string>
+    <!-- suppress MissingTranslation -->
+    <string name="toolbar_elevation_preference_default_value">4</string>
+    <!-- suppress MissingTranslation -->
+    <string name="navigation_width_preference_key">navigation_width_preference_key</string>
+    <!-- suppress MissingTranslation -->
+    <string name="navigation_width_preference_default_value">384</string>
+    <!-- suppress MissingTranslation -->
+    <string name="preference_screen_elevation_preference_key">preference_screen_elevation_preference_key</string>
+    <!-- suppress MissingTranslation -->
+    <string name="preference_screen_elevation_preference_default_value">14</string>
+    <!-- suppress MissingTranslation -->
+    <string name="bread_crumb_elevation_preference_key">bread_crumb_elevation_preference_key</string>
+    <!-- suppress MissingTranslation -->
+    <string name="bread_crumb_elevation_preference_default_value">2</string>
+    <!-- suppress MissingTranslation -->
+    <string name="wizard_button_bar_elevation_preference_key">wizard_button_bar_elevation_preference_key</string>
+    <!-- suppress MissingTranslation -->
+    <string name="wizard_button_bar_elevation_preference_default_value">2</string>
+    <!-- suppress MissingTranslation -->
+    <string name="override_navigation_icon_preference_default_value">true</string>
+    <!-- suppress MissingTranslation -->
+    <string name="override_navigation_icon_preference_key">override_back_button_preference_key</string>
+    <!-- suppress MissingTranslation -->
+    <string name="hide_navigation_preference_default_value">false</string>
+    <!-- suppress MissingTranslation -->
+    <string name="hide_navigation_preference_key">hide_navigation_preference_key</string>
+    <!-- suppress MissingTranslation -->
+    <string name="theme_preference_key">theme_preference_key</string>
+    <!-- suppress MissingTranslation -->
+    <string name="theme_preference_default_value">0</string>
+
 </resources>

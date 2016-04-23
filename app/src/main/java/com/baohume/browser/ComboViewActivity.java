@@ -138,8 +138,8 @@ public class ComboViewActivity extends AppActivity implements CombinedBookmarksC
             return true;
         } else if (item.getItemId() == R.id.preferences_menu_id) {
             String url = getIntent().getStringExtra(EXTRA_CURRENT_URL);
-            Intent intent = new Intent(this, BrowserPreferencesPage.class);
-            intent.putExtra(BrowserPreferencesPage.CURRENT_PAGE, url);
+            Intent intent = new Intent(this, SettingsActivity.class);
+            intent.putExtra(SettingsActivity.CURRENT_PAGE, url);
             startActivityForResult(intent, Controller.PREFERENCES_PAGE);
             return true;
         }

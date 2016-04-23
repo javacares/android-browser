@@ -83,6 +83,7 @@
             android:fadingEdgeLength="24dip"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white"
+            android:textColorHint="@color/abc_secondary_text_material_dark"
             android:hint="@string/search_hint"
             android:singleLine="true"
             android:ellipsize="end"

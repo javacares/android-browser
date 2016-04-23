@@ -55,6 +55,7 @@
                    android:icon="@mipmap/ic_launcher_browser"
                    android:backupAgent="com.baohume.browser.BrowserBackupAgent"
                    android:hardwareAccelerated="true"
+                   android:theme="@style/BrowserTheme"
                    android:taskAffinity="android.task.browser"
                    android:usesCleartextTraffic="true" >
 
@@ -156,7 +157,7 @@
 
         </activity>
 
-        <activity android:name="com.baohume.browser.BrowserPreferencesPage" android:label="@string/menu_preferences">
+        <activity android:name="com.baohume.browser.SettingsActivity" android:label="@string/menu_preferences">
             <intent-filter>
                <action android:name="android.intent.action.MANAGE_NETWORK_USAGE" />
                <category android:name="android.intent.category.DEFAULT" />
