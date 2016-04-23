@@ -86,7 +86,7 @@ public class BrowserActivity extends Activity {
         if (xlarge) {
             ui = new XLargeUi(this, controller);
         } else {
-            ui = new PhoneUi(this, controller);
+            ui = new PhoneUiBottomNav(this, controller);
         }
         controller.setUi(ui);
         return controller;

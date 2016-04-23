@@ -41,7 +41,15 @@
         <FrameLayout android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="?android:attr/actionBarSize"
         />
     </com.baohume.browser.view.CustomScreenLinearLayout>
+    <com.baohume.browser.NavigationBarPhoneBottom
+        android:id="@+id/screen_bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|center"
+        android:orientation="horizontal"/>
 </merge>
 

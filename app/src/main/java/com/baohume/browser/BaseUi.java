@@ -766,7 +766,8 @@ public abstract class BaseUi implements UI {
         win.setAttributes(winParams);
     }
 
-    public Drawable getFaviconDrawable(Bitmap icon) {
+    //TODO QIJB commented
+    public Drawable getFaviconDrawable1(Bitmap icon) {
         Drawable[] array = new Drawable[3];
         array[0] = new PaintDrawable(Color.BLACK);
         PaintDrawable p = new PaintDrawable(Color.WHITE);
@@ -779,6 +780,22 @@ public abstract class BaseUi implements UI {
         LayerDrawable d = new LayerDrawable(array);
         d.setLayerInset(1, 1, 1, 1, 1);
         d.setLayerInset(2, 2, 2, 2, 2);
+        return d;
+    }
+
+    public Drawable getFaviconDrawable(Bitmap icon) {
+        Drawable[] array = new Drawable[2];
+//        array[0] = new PaintDrawable(Color.BLACK);
+        PaintDrawable p = new PaintDrawable(Color.WHITE);
+        array[0] = p;
+        if (icon == null) {
+            array[1] = mGenericFavicon;
+        } else {
+            array[1] = new BitmapDrawable(icon);
+        }
+        LayerDrawable d = new LayerDrawable(array);
+        d.setLayerInset(0, 0, 0, 0, 0);
+        d.setLayerInset(1, 2, 2, 2, 2);
         return d;
     }
 

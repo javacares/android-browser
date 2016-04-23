@@ -74,7 +74,7 @@
                   android:alwaysRetainTaskState="true"
                   android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
                   android:theme="@style/BrowserTheme.NoActionBar"
-                  android:windowSoftInputMode="adjustResize" >
+                  android:windowSoftInputMode="adjustPan" >
             <intent-filter>
                 <action android:name="android.speech.action.VOICE_SEARCH_RESULTS" />
                 <category android:name="android.intent.category.DEFAULT" />

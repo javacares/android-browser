@@ -461,8 +461,7 @@ public class PhoneUi extends BaseUi {
         private Bitmap mContentBitmap;
 
         public AnimScreen(Context ctx) {
-            mMain = LayoutInflater.from(ctx).inflate(R.layout.anim_screen,
-                    null);
+            mMain = LayoutInflater.from(ctx).inflate(R.layout.anim_screen, null);
             mTitle = (ImageView) mMain.findViewById(R.id.title);
             mContent = (ImageView) mMain.findViewById(R.id.content);
             mContent.setScaleType(ImageView.ScaleType.MATRIX);
