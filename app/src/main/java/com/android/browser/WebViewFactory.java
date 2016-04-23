@@ -23,8 +23,8 @@ import android.webkit.WebView;
  */
 public interface WebViewFactory {
 
-    public WebView createWebView(boolean privateBrowsing);
+    public BrowserWebView createWebView(boolean privateBrowsing);
 
-    public WebView createSubWebView(boolean privateBrowsing);
+    public BrowserWebView createSubWebView(boolean privateBrowsing);
 
 }

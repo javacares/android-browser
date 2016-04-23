@@ -407,7 +407,8 @@ public class WebStorageSizeManager {
             PendingIntent contentIntent =
                 PendingIntent.getActivity(mContext, 0, intent, 0);
             Notification notification = new Notification(icon, title, when);
-            notification.setLatestEventInfo(mContext, title, text, contentIntent);
+            //TODO QIJB commented
+//            notification.setLatestEventInfo(mContext, title, text, contentIntent);
             notification.flags |= Notification.FLAG_AUTO_CANCEL;
             // Fire away.
             String ns = Context.NOTIFICATION_SERVICE;

@@ -39,6 +39,20 @@
     <string name="page_info" msgid="4048529256302257195">"网页信息"</string>
     <string name="page_info_view" msgid="5303490449842635158">"查看网页信息"</string>
     <string name="page_info_address" msgid="2222306609532903254">"网址："</string>
+    <string name="ssl_certificate" msgid="6510040486049237639">"安全证书"</string>
+    <string name="issued_to" msgid="454239480274921032">"颁发给："</string>
+    <string name="common_name" msgid="2233209299434172646">"常用名称："</string>
+    <string name="org_name" msgid="6973561190762085236">"组织："</string>
+    <string name="org_unit" msgid="7265981890422070383">"组织单位："</string>
+    <string name="issued_by" msgid="2647584988057481566">"颁发者："</string>
+    <string name="validity_period" msgid="8818886137545983110">"有效期："</string>
+    <string name="issued_on" msgid="5895017404361397232">"颁发时间："</string>
+    <string name="expires_on" msgid="3676242949915959821">"有效期至："</string>
+    <string name="serial_number" msgid="758814067660862493">"序列号："</string>
+    <string name="fingerprints" msgid="4516019619850763049">"指纹："</string>
+    <string name="sha256_fingerprint" msgid="4391271286477279263">"SHA-256 指纹："</string>
+    <string name="sha1_fingerprint" msgid="7930330235269404581">"SHA-1 指纹："</string>
+
     <string name="ssl_warnings_header" msgid="79744901983636370">"该网站的安全证书有问题。"</string>
     <string name="ssl_continue" msgid="8031515015829358457">"继续"</string>
     <string name="security_warning" msgid="6607795404322797541">"安全警告"</string>
@@ -315,13 +329,13 @@
     <string name="too_many_windows_dialog_message" msgid="3644234634638290304">"无法打开新标签，请先关闭某个标签。"</string>
     <string name="too_many_subwindows_dialog_title" msgid="3805453941587725944">"弹出式窗口已经打开"</string>
     <string name="too_many_subwindows_dialog_message" msgid="2164725447981195556">"一次只能打开一个弹出式窗口。"</string>
-    <string name="download_no_sdcard_dlg_title" product="nosdcard" msgid="56777245081568508">"不存在 USB 存储设备"</string>
+    <!--<string name="download_no_sdcard_dlg_title" product="nosdcard" msgid="56777245081568508">"不存在 USB 存储设备"</string>-->
     <string name="download_no_sdcard_dlg_title" product="default" msgid="605904452159416792">"无 SD 卡"</string>
-    <string name="download_no_sdcard_dlg_msg" product="nosdcard" msgid="3144652102051031721">"必须装载 USB 存储设备才能下载“<xliff:g id="FILENAME">%s</xliff:g>”。"</string>
+    <!--<string name="download_no_sdcard_dlg_msg" product="nosdcard" msgid="3144652102051031721">"必须装载 USB 存储设备才能下载“<xliff:g id="FILENAME">%s</xliff:g>”。"</string>-->
     <string name="download_no_sdcard_dlg_msg" product="default" msgid="2616399456116301518">"需要有 SD 卡才能下载<xliff:g id="FILENAME">%s</xliff:g>。"</string>
-    <string name="download_sdcard_busy_dlg_title" product="nosdcard" msgid="8081445664689818973">"不存在 USB 存储设备"</string>
+    <!--<string name="download_sdcard_busy_dlg_title" product="nosdcard" msgid="8081445664689818973">"不存在 USB 存储设备"</string>-->
     <string name="download_sdcard_busy_dlg_title" product="default" msgid="6877712666046917741">"SD 卡不可用"</string>
-    <string name="download_sdcard_busy_dlg_msg" product="nosdcard" msgid="8412543086906716875">"USB 存储设备正忙。要允许下载，请在通知中触摸“关闭 USB 存储设备”。"</string>
+    <!--<string name="download_sdcard_busy_dlg_msg" product="nosdcard" msgid="8412543086906716875">"USB 存储设备正忙。要允许下载，请在通知中触摸“关闭 USB 存储设备”。"</string>-->
     <string name="download_sdcard_busy_dlg_msg" product="default" msgid="2629425950473358591">"SD 卡正忙。要允许下载，请在通知中触摸“关闭 USB 存储设备”。"</string>
     <string name="cannot_download" msgid="8150552478556798780">"只能从“http”或“https”网址下载。"</string>
     <string name="download_pending" msgid="2599683668575349559">"开始下载..."</string>

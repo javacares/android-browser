@@ -22,6 +22,7 @@ import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.net.http.SslCertificate;
 import android.net.http.SslError;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.HttpAuthHandler;
@@ -29,6 +30,13 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateEncodingException;
+import java.security.cert.X509Certificate;
+import java.util.Date;
 
 /**
  * Displays page info
@@ -339,11 +347,11 @@ public class PageDialogsHandler {
      * certificate. In this case, error is used to add text describing the
      * problems with the certificate and a different icon is used.
      */
-    private AlertDialog.Builder createSslCertificateDialog(SslCertificate certificate,
-            SslError error) {
-        View certificateView = certificate.inflateCertificateView(mContext);
+    private AlertDialog.Builder createSslCertificateDialog(SslCertificate certifi, SslError error){
+        //TODO QIJB changed
+        View certificateView = inflateCertificateView(mContext, certifi);
         final LinearLayout placeholder =
-                (LinearLayout)certificateView.findViewById(com.android.internal.R.id.placeholder);
+                (LinearLayout)certificateView.findViewById(R.id.placeholder);
 
         LayoutInflater factory = LayoutInflater.from(mContext);
         int iconId;
@@ -352,7 +360,7 @@ public class PageDialogsHandler {
             iconId = R.drawable.ic_dialog_browser_certificate_secure;
             LinearLayout table = (LinearLayout)factory.inflate(R.layout.ssl_success, placeholder);
             TextView successString = (TextView)table.findViewById(R.id.success);
-            successString.setText(com.android.internal.R.string.ssl_certificate_is_valid);
+            successString.setText(R.string.ssl_certificate_is_valid);
         } else {
             iconId = R.drawable.ic_dialog_browser_certificate_partially_secure;
             if (error.hasError(SslError.SSL_UNTRUSTED)) {
@@ -384,7 +392,7 @@ public class PageDialogsHandler {
         }
 
         return new AlertDialog.Builder(mContext)
-                .setTitle(com.android.internal.R.string.ssl_certificate)
+                .setTitle(R.string.ssl_certificate)
                 .setIcon(iconId)
                 .setView(certificateView);
     }
@@ -394,5 +402,152 @@ public class PageDialogsHandler {
                 parent, false);
         textView.setText(error);
         parent.addView(textView);
+    }
+
+    //TODO QIJB add
+
+    /**
+     * Inflates the SSL certificate view (helper method).
+     * @return The resultant certificate view with issued-to, issued-by,
+     * issued-on, expires-on, and possibly other fields set.
+     *
+     * @hide Used by BrowserApplication and Settings
+     */
+    public View inflateCertificateView(Context context, SslCertificate certificate) {
+        LayoutInflater factory = LayoutInflater.from(context);
+
+        View certificateView = factory.inflate(R.layout.ssl_certificate, null);
+
+        // issued to:
+        SslCertificate.DName issuedTo = certificate.getIssuedTo();
+        if (issuedTo != null) {
+            ((TextView) certificateView.findViewById(R.id.to_common))
+                    .setText(issuedTo.getCName());
+            ((TextView) certificateView.findViewById(R.id.to_org))
+                    .setText(issuedTo.getOName());
+            ((TextView) certificateView.findViewById(R.id.to_org_unit))
+                    .setText(issuedTo.getUName());
+        }
+        // serial number:
+        ((TextView) certificateView.findViewById(R.id.serial_number))
+                .setText(getSerialNumber(null));
+
+        // issued by:
+        SslCertificate.DName issuedBy = certificate.getIssuedBy();
+        if (issuedBy != null) {
+            ((TextView) certificateView.findViewById(R.id.by_common))
+                    .setText(issuedBy.getCName());
+            ((TextView) certificateView.findViewById(R.id.by_org))
+                    .setText(issuedBy.getOName());
+            ((TextView) certificateView.findViewById(R.id.by_org_unit))
+                    .setText(issuedBy.getUName());
+        }
+
+        // issued on:
+        String issuedOn = formatCertificateDate(context, certificate.getValidNotBeforeDate());
+        ((TextView) certificateView.findViewById(R.id.issued_on))
+                .setText(issuedOn);
+
+        // expires on:
+        String expiresOn = formatCertificateDate(context, certificate.getValidNotAfterDate());
+        ((TextView) certificateView.findViewById(R.id.expires_on))
+                .setText(expiresOn);
+
+        // fingerprints:
+        ((TextView) certificateView.findViewById(R.id.sha256_fingerprint))
+                .setText(getDigest(null, "SHA256"));
+        ((TextView) certificateView.findViewById(R.id.sha1_fingerprint))
+                .setText(getDigest(null, "SHA1"));
+
+        return certificateView;
+    }
+
+
+
+    /**
+     * Formats the certificate date to a properly localized date string.
+     * @return Properly localized version of the certificate date string and
+     * the "" if it fails to localize.
+     */
+    private String formatCertificateDate(Context context, Date certificateDate) {
+        if (certificateDate == null) {
+            return "";
+        }
+        return DateFormat.getDateFormat(context).format(certificateDate);
+    }
+
+
+    /**
+     * Convenience for UI presentation, not intended as public API.
+     */
+    private static String getSerialNumber(X509Certificate x509Certificate) {
+        if (x509Certificate == null) {
+            return "";
+        }
+        BigInteger serialNumber = x509Certificate.getSerialNumber();
+        if (serialNumber == null) {
+            return "";
+        }
+        return fingerprint(serialNumber.toByteArray());
+    }
+
+    private static final String fingerprint(byte[] bytes) {
+        if (bytes == null) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < bytes.length; i++) {
+            byte b = bytes[i];
+            appendByteAsHex(sb, b, true);
+            if (i+1 != bytes.length) {
+                sb.append(':');
+            }
+        }
+        return sb.toString();
+    }
+
+    public static StringBuilder appendByteAsHex(StringBuilder sb, byte b, boolean upperCase) {
+        char[] digits = upperCase ? UPPER_CASE_DIGITS : DIGITS;
+        sb.append(digits[(b >> 4) & 0xf]);
+        sb.append(digits[b & 0xf]);
+        return sb;
+    }
+
+
+    /**
+     * The digits for every supported radix.
+     */
+    private static final char[] DIGITS = {
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+            'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+            'u', 'v', 'w', 'x', 'y', 'z'
+    };
+
+    private static final char[] UPPER_CASE_DIGITS = {
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+            'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+            'U', 'V', 'W', 'X', 'Y', 'Z'
+    };
+
+
+    /**
+     * Convenience for UI presentation, not intended as public API.
+     */
+    private static String getDigest(X509Certificate x509Certificate, String algorithm) {
+        if (x509Certificate == null) {
+            return "";
+        }
+        try {
+            byte[] bytes = x509Certificate.getEncoded();
+            MessageDigest md = MessageDigest.getInstance(algorithm);
+            byte[] digest = md.digest(bytes);
+            return fingerprint(digest);
+        } catch (CertificateEncodingException ignored) {
+            return "";
+        } catch (NoSuchAlgorithmException ignored) {
+            return "";
+        }
     }
 }

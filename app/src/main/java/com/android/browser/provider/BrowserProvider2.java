@@ -37,18 +37,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.provider.BaseColumns;
-import android.provider.Browser;
-import android.provider.Browser.BookmarkColumns;
-import android.provider.BrowserContract;
-import android.provider.BrowserContract.Accounts;
-import android.provider.BrowserContract.Bookmarks;
-import android.provider.BrowserContract.ChromeSyncColumns;
-import android.provider.BrowserContract.Combined;
-import android.provider.BrowserContract.History;
-import android.provider.BrowserContract.Images;
-import android.provider.BrowserContract.Searches;
-import android.provider.BrowserContract.Settings;
-import android.provider.BrowserContract.SyncState;
+import com.android.provider.Browser;
+import com.android.provider.Browser.BookmarkColumns;
+import com.android.provider.BrowserContract;
+import com.android.provider.BrowserContract.Accounts;
+import com.android.provider.BrowserContract.Bookmarks;
+import com.android.provider.BrowserContract.ChromeSyncColumns;
+import com.android.provider.BrowserContract.Combined;
+import com.android.provider.BrowserContract.History;
+import com.android.provider.BrowserContract.Images;
+import com.android.provider.BrowserContract.Searches;
+import com.android.provider.BrowserContract.Settings;
+import com.android.provider.BrowserContract.SyncState;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.SyncStateContract;
 import android.text.TextUtils;
@@ -57,7 +57,6 @@ import com.android.browser.R;
 import com.android.browser.UrlUtils;
 import com.android.browser.widget.BookmarkThumbnailWidgetProvider;
 import com.android.common.content.SyncStateContentProviderHelper;
-import com.google.common.annotations.VisibleForTesting;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -803,7 +802,6 @@ public class BrowserProvider2 extends SQLiteContentProvider {
         return uri.getBooleanQueryParameter(BrowserContract.CALLER_IS_SYNCADAPTER, false);
     }
 
-    @VisibleForTesting
     public void setWidgetObserver(ContentObserver obs) {
         mWidgetObserver = obs;
     }

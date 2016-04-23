@@ -116,7 +116,7 @@ public class UrlBarAutoShowManager implements OnTouchListener,
             break;
         case MotionEvent.ACTION_MOVE:
             if (mIsTracking && !mHasTriggered) {
-                WebView web = (WebView) v;
+                BrowserWebView web = (BrowserWebView) v;
                 float dy = event.getY() - mStartTouchY;
                 float ady = Math.abs(dy);
                 float adx = Math.abs(event.getX() - mStartTouchX);

@@ -26,7 +26,7 @@ import android.net.Uri;
 import android.nfc.NfcAdapter;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Browser;
+import com.android.provider.Browser;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;

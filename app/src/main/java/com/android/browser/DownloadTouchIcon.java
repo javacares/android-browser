@@ -29,8 +29,8 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Message;
-import android.provider.BrowserContract;
-import android.provider.BrowserContract.Images;
+import com.android.provider.BrowserContract;
+import com.android.provider.BrowserContract.Images;
 import android.webkit.WebView;
 
 import java.io.ByteArrayOutputStream;

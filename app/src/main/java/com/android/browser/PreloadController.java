@@ -68,7 +68,7 @@ public class PreloadController implements WebViewController {
     }
 
     @Override
-    public void onSetWebView(Tab tab, WebView view) {
+    public void onSetWebView(Tab tab, BrowserWebView view) {
         if (LOGD_ENABLED) Log.d(LOGTAG, "onSetWebView()");
     }
 

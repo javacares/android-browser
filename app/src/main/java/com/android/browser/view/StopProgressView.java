@@ -16,7 +16,7 @@ public class StopProgressView extends ProgressBar {
     Drawable mProgressDrawable;
     int mWidth;
     int mHeight;
-
+    Context mContext;
     /**
      * @param context
      * @param attrs
@@ -25,6 +25,7 @@ public class StopProgressView extends ProgressBar {
      */
     public StopProgressView(Context context, AttributeSet attrs, int defStyle, int styleRes) {
         super(context, attrs, defStyle, styleRes);
+        mContext = context;
         init(attrs);
     }
 
@@ -35,6 +36,7 @@ public class StopProgressView extends ProgressBar {
      */
     public StopProgressView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        mContext = context;
         init(attrs);
     }
 
@@ -44,6 +46,7 @@ public class StopProgressView extends ProgressBar {
      */
     public StopProgressView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mContext = context;
         init(attrs);
     }
 
@@ -52,13 +55,13 @@ public class StopProgressView extends ProgressBar {
      */
     public StopProgressView(Context context) {
         super(context);
+        mContext = context;
         init(null);
     }
 
     private void init(AttributeSet attrs) {
         mProgressDrawable = getIndeterminateDrawable();
-        setImageDrawable(mContext.getResources()
-                .getDrawable(R.drawable.ic_stop_holo_dark));
+        setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_stop_holo_dark));
     }
 
     public void hideProgress() {

@@ -18,7 +18,7 @@ package com.android.browser.view;
 
 import android.content.Context;
 import android.database.DataSetObserver;
-import android.provider.BrowserContract;
+import android.support.v7.view.menu.MenuBuilder;
 import android.util.AttributeSet;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -35,7 +35,8 @@ import android.widget.TextView;
 import com.android.browser.BreadCrumbView;
 import com.android.browser.BrowserBookmarksAdapter;
 import com.android.browser.R;
-import com.android.internal.view.menu.MenuBuilder;
+import com.android.provider.BrowserContract;
+//import com.android.internal.view.menu.MenuBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -175,10 +176,10 @@ public class BookmarkExpandableView extends ExpandableListView
         // Clear the extra information so subsequent items that aren't mine don't
         // have my extra info.
         ((MenuBuilder)menu).setCurrentMenuInfo(null);
-
-        if (mParent != null) {
-            mParent.createContextMenu(menu);
-        }
+        //TODO QIJB
+//        if (mParent != null) {
+//            mParent.createContextMenu(menu);
+//        }
     }
 
     @Override

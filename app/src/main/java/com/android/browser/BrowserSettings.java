@@ -27,7 +27,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.provider.Browser;
+import com.android.provider.Browser;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.webkit.CookieManager;
@@ -55,8 +55,7 @@ import java.util.WeakHashMap;
 /**
  * Class for managing settings
  */
-public class BrowserSettings implements OnSharedPreferenceChangeListener,
-        PreferenceKeys {
+public class BrowserSettings implements OnSharedPreferenceChangeListener, PreferenceKeys {
 
     // TODO: Do something with this UserAgent stuff
     private static final String DESKTOP_USERAGENT = "Mozilla/5.0 (X11; " +
@@ -120,7 +119,8 @@ public class BrowserSettings implements OnSharedPreferenceChangeListener,
     // Cached values
     private int mPageCacheCapacity = 1;
     private String mAppCachePath;
-
+    //TODO QIJB added for get SystemMemory.
+    private ActivityManager mActivityManager;
     // Cached settings
     private SearchEngine mSearchEngine;
 
@@ -136,6 +136,8 @@ public class BrowserSettings implements OnSharedPreferenceChangeListener,
 
     private BrowserSettings(Context context) {
         mContext = context.getApplicationContext();
+        //TODO QIJB added
+        mActivityManager = (ActivityManager)mContext.getSystemService(Context.ACTIVITY_SERVICE);
         mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         mManagedSettings = new LinkedList<WeakReference<WebSettings>>();
         mCustomUserAgents = new WeakHashMap<WebSettings, String>();
@@ -182,7 +184,9 @@ public class BrowserSettings implements OnSharedPreferenceChangeListener,
             // the cost of one cached page is ~3M (measured using nytimes.com). For
             // low end devices, we only cache one page. For high end devices, we try
             // to cache more pages, currently choose 5.
-            if (ActivityManager.staticGetMemoryClass() > 16) {
+            //TODO QIJB changed
+//            if (ActivityManager.staticGetMemoryClass() > 16) {
+            if (mActivityManager.getMemoryClass() > 16) {
                 mPageCacheCapacity = 5;
             }
             mWebStorageSizeManager = new WebStorageSizeManager(mContext,
@@ -251,7 +255,8 @@ public class BrowserSettings implements OnSharedPreferenceChangeListener,
         settings.setGeolocationEnabled(enableGeolocation());
         settings.setJavaScriptEnabled(enableJavascript());
         settings.setLightTouchEnabled(enableLightTouch());
-        settings.setNavDump(enableNavDump());
+        //TODO QIJB commented
+//        settings.setNavDump(enableNavDump());
         settings.setDefaultTextEncodingName(getDefaultTextEncoding());
         settings.setDefaultZoom(getDefaultZoom());
         settings.setMinimumFontSize(getMinimumFontSize());
@@ -303,8 +308,11 @@ public class BrowserSettings implements OnSharedPreferenceChangeListener,
         settings.setDatabasePath(mContext.getDir("databases", 0).getPath());
         settings.setGeolocationDatabasePath(mContext.getDir("geolocation", 0).getPath());
         // origin policy for file access
-        settings.setAllowUniversalAccessFromFileURLs(false);
-        settings.setAllowFileAccessFromFileURLs(false);
+        //TODO QIJB changed
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            settings.setAllowUniversalAccessFromFileURLs(false);
+            settings.setAllowFileAccessFromFileURLs(false);
+        }
     }
 
     private void syncSharedSettings() {
@@ -360,8 +368,12 @@ public class BrowserSettings implements OnSharedPreferenceChangeListener,
 
     public LayoutAlgorithm getLayoutAlgorithm() {
         LayoutAlgorithm layoutAlgorithm = LayoutAlgorithm.NORMAL;
-        final LayoutAlgorithm autosize = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ?
-                LayoutAlgorithm.TEXT_AUTOSIZING : LayoutAlgorithm.NARROW_COLUMNS;
+        final LayoutAlgorithm autosize;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            autosize = LayoutAlgorithm.TEXT_AUTOSIZING;
+        } else {
+            autosize = LayoutAlgorithm.NARROW_COLUMNS;
+        }
 
         if (autofitPages()) {
             layoutAlgorithm = autosize;

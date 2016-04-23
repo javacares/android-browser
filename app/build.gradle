@@ -6,7 +6,10 @@ android {
 
     defaultConfig {
         applicationId "com.android.browser"
-
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 100
+        versionName "1.0.0"
         testApplicationId "com.android.browser.tests"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
@@ -16,5 +19,30 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
+    }
+
+
+    dependencies {
+        compile fileTree(include: ['*.jar'], dir: 'libs')
+        //compile 'com.android.support:support-v4:23.3.0'
+        compile 'com.android.support:appcompat-v7:23.3.0'
+        compile 'com.android.support:support-v13:23.3.0'
+        compile 'com.android.support:support-annotations:23.3.0'
+        compile 'com.jakewharton:butterknife:6.1.0'
+        compile 'com.squareup.okio:okio:1.5.0'
+        compile 'com.squareup.okhttp:okhttp:2.4.0'
+        compile 'com.squareup.picasso:picasso:2.5.2'
+        compile 'de.greenrobot:eventbus:2.4.0'
+        compile 'com.mcxiaoke.volley:library:1.0.19@aar'
+        compile 'com.github.michael-rapp:android-preference-activity:4.2.2'
+        testCompile 'junit:junit:4.12'
+        androidTestCompile 'org.mockito:mockito-core:1.10.19'
+        androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+        androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+        //compile 'net.xpece.android:support-preference:0.7.0'
+        //  compile 'com.umeng.analytics:analytics:latest.integration'
+        //  compile files('libs/wup-1.0.0.E-SNAPSHOT.jar')
+        //  debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
+        //  releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
     }
 }

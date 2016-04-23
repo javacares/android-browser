@@ -211,7 +211,9 @@ public class DownloadHandler {
         request.setDescription(webAddress.getHost());
         // XXX: Have to use the old url since the cookies were stored using the
         // old percent-encoded url.
-        String cookies = CookieManager.getInstance().getCookie(url, privateBrowsing);
+        //TODO QIJB commented
+//        String cookies = CookieManager.getInstance().getCookie(url, privateBrowsing);
+        String cookies = CookieManager.getInstance().getCookie(url);
         request.addRequestHeader("cookie", cookies);
         request.addRequestHeader("User-Agent", userAgent);
         request.addRequestHeader("Referer", referer);

@@ -84,7 +84,7 @@ class TabControl {
      * if one exists.
      * @return The top-level WebView of the current tab.
      */
-    WebView getCurrentTopWebView() {
+    BrowserWebView getCurrentTopWebView() {
         Tab t = getTab(mCurrentTab);
         if (t == null) {
             return null;
@@ -141,7 +141,7 @@ class TabControl {
 
     /**
      * Given a Tab, find it's position
-     * @param Tab to find
+     * @param tab to find
      * @return position of Tab or -1 if not found
      */
     int getTabPosition(Tab tab) {
@@ -198,7 +198,7 @@ class TabControl {
             return null;
         }
 
-        final WebView w = createNewWebView(privateBrowsing);
+        final BrowserWebView w = createNewWebView(privateBrowsing);
 
         // Create a new tab and add it to the tab list
         Tab t = new Tab(mController, w, state);
@@ -286,7 +286,6 @@ class TabControl {
      * position sorted array of tab ids
      * for each tab id, save the tab state
      * @param outState
-     * @param saveImages
      */
     void saveState(Bundle outState) {
         final int numTabs = getTabCount();
@@ -616,7 +615,7 @@ class TabControl {
     /**
      * Creates a new WebView and registers it with the global settings.
      */
-    private WebView createNewWebView() {
+    private BrowserWebView createNewWebView() {
         return createNewWebView(false);
     }
 
@@ -625,7 +624,7 @@ class TabControl {
      * @param privateBrowsing When true, enables private browsing in the new
      *        WebView.
      */
-    private WebView createNewWebView(boolean privateBrowsing) {
+    private BrowserWebView createNewWebView(boolean privateBrowsing) {
         return mController.getWebViewFactory().createWebView(privateBrowsing);
     }
 
@@ -663,7 +662,7 @@ class TabControl {
 
         // Display the new current tab
         mCurrentTab = mTabs.indexOf(newTab);
-        WebView mainView = newTab.getWebView();
+        BrowserWebView mainView = newTab.getWebView();
         boolean needRestore = mainView == null;
         if (needRestore) {
             // Same work as in createNewTab() except don't do new Tab()

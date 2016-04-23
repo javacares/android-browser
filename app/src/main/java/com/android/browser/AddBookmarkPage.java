@@ -40,8 +40,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.BrowserContract;
-import android.provider.BrowserContract.Accounts;
+import com.android.provider.BrowserContract;
+import com.android.provider.BrowserContract.Accounts;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -278,7 +278,8 @@ public class AddBookmarkPage extends Activity
             InputMethodManager imm = getInputMethodManager();
             // Set the InputMethodManager to focus on the ListView so that it
             // can transfer the focus to mFolderNamer.
-            imm.focusIn(mListView);
+            //TODO qijb
+//            imm.focusIn(mListView);
             imm.showSoftInput(mFolderNamer, InputMethodManager.SHOW_IMPLICIT);
         } else if (v == mRemoveLink) {
             if (!mEditingExisting) {

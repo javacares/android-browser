@@ -27,8 +27,7 @@ public class LogTag {
      * @param where the location from where the bookmark was added
      */
     public static void logBookmarkAdded(String url, String where) {
-        EventLog.writeEvent(EventLogTags.BROWSER_BOOKMARK_ADDED, url + "|"
-            + where);
+        EventLog.writeEvent(EventLogTags.BROWSER_BOOKMARK_ADDED, url + "|"  + where);
     }
 
     /**
@@ -53,7 +52,26 @@ public class LogTag {
      * @param duration the time spent on the webpage.
      */
     public static void logTimeOnPage(String url, long duration) {
-        EventLog.writeEvent(EventLogTags.BROWSER_TIMEONPAGE, url + "|"
-            + duration);
+        EventLog.writeEvent(EventLogTags.BROWSER_TIMEONPAGE, url + "|" + duration);
+    }
+
+
+    /**
+     * # This event is logged when a user adds a new bookmark. This could just be a boolean,
+     # but if lots of users add the same bookmark it could be a default bookmark on the browser.
+     # Second parameter is where the bookmark was added from, currently history or bookmarks view.
+     70103 browser_bookmark_added (url|3), (where|3)
+
+     # This event is logged after a page has finished loading. It is sending back the page url,
+     # and how long it took to load the page. Could maybe also tell the kind of connection (2g, 3g, WiFi)?
+     70104 browser_page_loaded (url|3), (time|2|3)
+
+     # This event is logged when the user navigates to a new page, sending the time spent on the current page.
+     70105 browser_timeonpage (url|3), (time|2|3)
+     */
+    static class EventLogTags {
+        public static final int BROWSER_BOOKMARK_ADDED  = 70103;
+        public static final int BROWSER_PAGE_LOADED     = 70104;
+        public static final int BROWSER_TIMEONPAGE      = 70105;
     }
 }

@@ -41,16 +41,17 @@ import android.graphics.Canvas;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
-import android.preference.PreferenceActivity;
-import android.provider.Browser;
-import android.provider.BrowserContract;
-import android.provider.BrowserContract.Images;
+import com.android.provider.Browser;
+import com.android.provider.BrowserContract;
+import com.android.provider.BrowserContract.Images;
+
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Intents.Insert;
 import android.speech.RecognizerIntent;
@@ -104,8 +105,7 @@ import java.util.Map;
 /**
  * Controller for browser
  */
-public class Controller
-        implements WebViewController, UiController, ActivityController {
+public class Controller implements WebViewController, UiController, ActivityController {
 
     private static final String LOGTAG = "Controller";
     private static final String SEND_APP_ID_EXTRA =
@@ -405,15 +405,15 @@ public class Controller
     }
 
     @Override
-    public void onSetWebView(Tab tab, WebView view) {
+    public void onSetWebView(Tab tab, BrowserWebView view) {
         mUi.onSetWebView(tab, view);
     }
 
     @Override
     public void createSubWindow(Tab tab) {
         endActionMode();
-        WebView mainView = tab.getWebView();
-        WebView subView = mFactory.createWebView((mainView == null)
+        BrowserWebView mainView = tab.getWebView();
+        BrowserWebView subView = mFactory.createWebView((mainView == null)
                 ? false
                 : mainView.isPrivateBrowsingEnabled());
         mUi.createSubWindow(tab, subView);
@@ -655,8 +655,8 @@ public class Controller
         }
         mUi.onPause();
         mNetworkHandler.onPause();
-
-        WebView.disablePlatformNotifications();
+        //TODO QIJB commented
+        //WebView.disablePlatformNotifications();
         NfcHandler.unregister(mActivity);
         if (sThumbnailBitmap != null) {
             sThumbnailBitmap.recycle();
@@ -706,7 +706,8 @@ public class Controller
 
         mUi.onResume();
         mNetworkHandler.onResume();
-        WebView.enablePlatformNotifications();
+        //TODO QIJB commented
+        //WebView.enablePlatformNotifications();
         NfcHandler.register(mActivity, this);
         if (mVoiceResult != null) {
             mUi.onVoiceResult(mVoiceResult);
@@ -1025,7 +1026,9 @@ public class Controller
         if (username != null && password != null) {
             handler.proceed(username, password);
         } else {
-            if (tab.inForeground() && !handler.suppressDialog()) {
+            if (tab.inForeground()) {
+            //TODO QIJB commented
+//          if (tab.inForeground() && !handler.suppressDialog()) {
                 mPageDialogsHandler.showHttpAuthentication(tab, handler, host, realm);
             } else {
                 handler.cancel();
@@ -1035,8 +1038,7 @@ public class Controller
 
     @Override
     public void onDownloadStart(Tab tab, String url, String userAgent,
-            String contentDisposition, String mimetype, String referer,
-            long contentLength) {
+            String contentDisposition, String mimetype, String referer, long contentLength) {
         WebView w = tab.getWebView();
         DownloadHandler.onDownloadStart(mActivity, url, userAgent,
                 contentDisposition, mimetype, referer, w.isPrivateBrowsingEnabled());
@@ -1211,7 +1213,7 @@ public class Controller
 
     /**
      * Open the Go page.
-     * @param startWithHistory If true, open starting on the history tab.
+     * @param startView If true, open starting on the history tab.
      *                         Otherwise, start with the bookmarks tab.
      */
     @Override
@@ -1656,6 +1658,7 @@ public class Controller
                 break;
 
             case R.id.dump_nav_menu_id:
+                //TODO QIJB commented
                 getCurrentTopWebView().debugDump();
                 break;
 
@@ -1832,7 +1835,7 @@ public class Controller
 
     // Helper method for getting the top window.
     @Override
-    public WebView getCurrentTopWebView() {
+    public BrowserWebView getCurrentTopWebView() {
         return mTabControl.getCurrentTopWebView();
     }
 
@@ -1905,7 +1908,6 @@ public class Controller
 
     /**
      * add the current page as a bookmark to the given folder id
-     * @param folderId use -1 for the default folder
      * @param editExisting If true, check to see whether the site is already
      *          bookmarked, and if it is, edit that bookmark.  If false, and
      *          the site is already bookmarked, do not attempt to edit the
@@ -1913,7 +1915,7 @@ public class Controller
      */
     @Override
     public Intent createBookmarkCurrentPageIntent(boolean editExisting) {
-        WebView w = getCurrentTopWebView();
+        BrowserWebView w = getCurrentTopWebView();
         if (w == null) {
             return null;
         }
@@ -1974,9 +1976,8 @@ public class Controller
                 R.dimen.bookmarkThumbnailHeight);
     }
 
-    static Bitmap createScreenshot(WebView view, int width, int height) {
-        if (view == null || view.getContentHeight() == 0
-                || view.getContentWidth() == 0) {
+    static Bitmap createScreenshot(BrowserWebView view, int width, int height) {
+        if (view == null || view.getContentHeight() == 0 || view.getContentWidth() == 0) {
             return null;
         }
         // We render to a bitmap 2x the desired size so that we can then
@@ -2021,7 +2022,7 @@ public class Controller
         // draw, but the API for that (WebViewCore.pictureReady()) is not
         // currently accessible here.
 
-        WebView view = tab.getWebView();
+        BrowserWebView view = tab.getWebView();
         if (view == null) {
             // Tab was destroyed
             return;
@@ -2451,7 +2452,7 @@ public class Controller
      * Load the URL into the given WebView and update the title bar
      * to reflect the new load.  Call this instead of WebView.loadUrl
      * directly.
-     * @param view The WebView used to load url.
+     * @param tab The WebView used to load url.
      * @param url The URL to load.
      */
     @Override

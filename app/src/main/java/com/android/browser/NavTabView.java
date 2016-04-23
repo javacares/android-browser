@@ -35,21 +35,25 @@ public class NavTabView extends LinearLayout {
     private TextView mTitle;
     private View mTitleBar;
     ImageView mImage;
+    private Context mContext;
     private OnClickListener mClickListener;
     private boolean mHighlighted;
 
     public NavTabView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        mContext = context;
         init();
     }
 
     public NavTabView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mContext = context;
         init();
     }
 
     public NavTabView(Context context) {
         super(context);
+        mContext = context;
         init();
     }
 

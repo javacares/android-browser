@@ -16,10 +16,11 @@
 
 package com.android.browser;
 
-import com.android.internal.preference.YesNoPreference;
 
 import android.content.Context;
 import android.util.AttributeSet;
+
+import com.android.preference.YesNoPreference;
 
 class BrowserYesNoPreference extends YesNoPreference {
 

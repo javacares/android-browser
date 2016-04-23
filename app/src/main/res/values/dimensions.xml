@@ -74,4 +74,9 @@
     <dimen name="nav_tab_text_small">14sp</dimen>
     <dimen name="suggest_item_padding">8dp</dimen>
     <dimen name="progress_bar_margin">-11dip</dimen>
+
+    <!-- Minimum space to allocate to the left of a preference item for an icon.
+    This helps in aligning titles when some items have icons and some don't. When space is
+    at a premium, we don't pre-allocate any space. -->
+    <dimen name="preference_icon_minWidth">0dp</dimen>
 </resources>

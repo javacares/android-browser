@@ -31,6 +31,7 @@ import android.graphics.drawable.PaintDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.view.menu.MenuBuilder;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -52,7 +53,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.browser.Tab.SecurityState;
-import com.android.internal.view.menu.MenuBuilder;
+//import com.android.internal.view.menu.MenuBuilder;
 
 import java.util.List;
 
@@ -386,19 +387,17 @@ public abstract class BaseUi implements UI {
     }
 
     @Override
-    public void onSetWebView(Tab tab, WebView webView) {
+    public void onSetWebView(Tab tab, BrowserWebView webView) {
         View container = tab.getViewContainer();
         if (container == null) {
             // The tab consists of a container view, which contains the main
             // WebView, as well as any other UI elements associated with the tab.
-            container = mActivity.getLayoutInflater().inflate(R.layout.tab,
-                    mContentView, false);
+            container = mActivity.getLayoutInflater().inflate(R.layout.tab, mContentView, false);
             tab.setViewContainer(container);
         }
         if (tab.getWebView() != webView) {
             // Just remove the old one.
-            FrameLayout wrapper =
-                    (FrameLayout) container.findViewById(R.id.webview_wrapper);
+            FrameLayout wrapper = (FrameLayout) container.findViewById(R.id.webview_wrapper);
             wrapper.removeView(tab.getWebView());
         }
     }
@@ -411,7 +410,7 @@ public abstract class BaseUi implements UI {
      * @param subView webview to be set as a subwindow for the tab
      */
     @Override
-    public void createSubWindow(Tab tab, WebView subView) {
+    public void createSubWindow(Tab tab, BrowserWebView subView) {
         View subViewContainer = mActivity.getLayoutInflater().inflate(
                 R.layout.browser_subwindow, null);
         ViewGroup inner = (ViewGroup) subViewContainer
@@ -733,8 +732,7 @@ public abstract class BaseUi implements UI {
     public View getVideoLoadingProgressView() {
         if (mVideoProgressView == null) {
             LayoutInflater inflater = LayoutInflater.from(mActivity);
-            mVideoProgressView = inflater.inflate(
-                    R.layout.video_loading_progress, null);
+            mVideoProgressView = inflater.inflate(R.layout.video_loading_progress, null);
         }
         return mVideoProgressView;
     }

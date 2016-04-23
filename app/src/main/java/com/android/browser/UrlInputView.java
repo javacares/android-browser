@@ -18,9 +18,7 @@ package com.android.browser;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -41,9 +39,6 @@ import com.android.browser.SuggestionsAdapter.SuggestItem;
 import com.android.browser.search.SearchEngine;
 import com.android.browser.search.SearchEngineInfo;
 import com.android.browser.search.SearchEngines;
-import com.android.internal.R;
-
-import java.util.List;
 
 /**
  * url/search input view
@@ -76,9 +71,11 @@ public class UrlInputView extends AutoCompleteTextView
 
     private int mState;
     private StateListener mStateListener;
+    private Context mContext;
 
     public UrlInputView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        this.mContext = context;
         init(context);
     }
 
@@ -219,7 +216,8 @@ public class UrlInputView extends AutoCompleteTextView
     }
 
     void showIME() {
-        mInputManager.focusIn(this);
+        //TODO QIJB
+//        mInputManager.focusIn(this);
         mInputManager.showSoftInput(this, 0);
     }
 

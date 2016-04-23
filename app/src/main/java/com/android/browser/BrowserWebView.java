@@ -26,6 +26,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Manage WebView scroll events
@@ -50,7 +51,12 @@ public class BrowserWebView extends WebView {
      */
     public BrowserWebView(Context context, AttributeSet attrs, int defStyle,
             Map<String, Object> javascriptInterfaces, boolean privateBrowsing) {
-        super(context, attrs, defStyle, javascriptInterfaces, privateBrowsing);
+        super(context, attrs, defStyle, privateBrowsing);
+        if(null != javascriptInterfaces) {
+            for(Map.Entry<String, Object> entry : javascriptInterfaces.entrySet()) {
+                this.addJavascriptInterface(entry.getValue(), entry.getKey());
+            }
+        }
     }
 
     /**
@@ -153,4 +159,26 @@ public class BrowserWebView extends WebView {
         super.destroy();
     }
 
+    @Override
+    public int getContentHeight() {
+        return super.getContentHeight();
+    }
+
+    public int getContentWidth() {
+        return super.getMeasuredWidth();
+    }
+
+    //TOOD QIJB add
+    public int getVisibleTitleHeight() {
+        return super.getHeight();
+    }
+
+    //TODO QIJB added for compiling problem
+    public void debugDump() {
+
+    }
+
+    public String getTouchIconUrl() {
+        return null;
+    }
 }

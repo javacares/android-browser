@@ -52,17 +52,21 @@ public class NavigationBarPhone extends NavigationBarBase implements
     private boolean mOverflowMenuShowing;
     private boolean mNeedsMenu;
     private View mIncognitoIcon;
+    private Context mContext;
 
     public NavigationBarPhone(Context context) {
         super(context);
+        mContext = context;
     }
 
     public NavigationBarPhone(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mContext = context;
     }
 
     public NavigationBarPhone(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        mContext = context;
     }
 
     @Override

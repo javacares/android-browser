@@ -22,4 +22,6 @@
     <item type="id" name="tab_view" />
     <item type="id" name="position" />
     <item type="id" name="load_object" />
+
+    <item name="widget_frame" type="id" />
 </resources>

@@ -34,6 +34,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -140,11 +141,11 @@ class Tab implements PictureListener {
     // Main WebView wrapper
     private View mContainer;
     // Main WebView
-    private WebView mMainView;
+    private BrowserWebView mMainView;
     // Subwindow container
     private View mSubViewContainer;
     // Subwindow WebView
-    private WebView mSubView;
+    private BrowserWebView mSubView;
     // Saved bundle for when we are running low on memory. It contains the
     // information needed to restore the WebView if the user goes back to the
     // tab.
@@ -194,7 +195,6 @@ class Tab implements PictureListener {
     private boolean mUpdateThumbnail;
 
     /**
-     * See {@link #clearBackStackWhenItemAdded(String)}.
      */
     private Pattern mClearHistoryUrlPattern;
 
@@ -371,7 +371,7 @@ class Tab implements PictureListener {
             }
 
             // finally update the UI in the activity if it is in the foreground
-            mWebViewController.onPageStarted(Tab.this, view, favicon);
+            mWebViewController.onPageStarted(Tab.this, (BrowserWebView) view, favicon);
 
             updateBookmarkedStatus();
         }
@@ -569,10 +569,13 @@ class Tab implements PictureListener {
          * Displays client certificate request to the user.
          */
         @Override
-        public void onReceivedClientCertRequest(final WebView view,
-                final ClientCertRequest request) {
+        public void onReceivedClientCertRequest(final WebView view,final ClientCertRequest request){
             if (!mInForeground) {
-                request.ignore();
+                //TODO QIJB commentd
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    request.ignore();
+                } else {
+                }
                 return;
             }
             KeyChain.choosePrivateKeyAlias(
@@ -1059,7 +1062,10 @@ class Tab implements PictureListener {
         }
         @Override
         public void onReceivedClientCertRequest(WebView view, ClientCertRequest request) {
-            mClient.onReceivedClientCertRequest(view, request);
+            //TODO QIJB added
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mClient.onReceivedClientCertRequest(view, request);
+            }
         }
         @Override
         public void onReceivedHttpAuthRequest(WebView view,
@@ -1120,7 +1126,7 @@ class Tab implements PictureListener {
     // -------------------------------------------------------------------------
 
     // Construct a new tab
-    Tab(WebViewController wvcontroller, WebView w) {
+    Tab(WebViewController wvcontroller, BrowserWebView w) {
         this(wvcontroller, w, null);
     }
 
@@ -1128,13 +1134,12 @@ class Tab implements PictureListener {
         this(wvcontroller, null, state);
     }
 
-    Tab(WebViewController wvcontroller, WebView w, Bundle state) {
+    Tab(WebViewController wvcontroller, BrowserWebView w, Bundle state) {
         mWebViewController = wvcontroller;
         mContext = mWebViewController.getContext();
         mSettings = BrowserSettings.getInstance();
         mDataController = DataController.getInstance(mContext);
-        mCurrentState = new PageState(mContext, w != null
-                ? w.isPrivateBrowsingEnabled() : false);
+        mCurrentState = new PageState(mContext, w != null ? w.isPrivateBrowsingEnabled() : false);
         mInPageLoad = false;
         mInForeground = false;
 
@@ -1231,7 +1236,7 @@ class Tab implements PictureListener {
         return mId;
     }
 
-    void setWebView(WebView w) {
+    void setWebView(BrowserWebView w) {
         setWebView(w, true);
     }
 
@@ -1239,7 +1244,7 @@ class Tab implements PictureListener {
      * Sets the WebView for this tab, correctly removing the old WebView from
      * the container view.
      */
-    void setWebView(WebView w, boolean restore) {
+    void setWebView(BrowserWebView w, boolean restore) {
         if (mMainView == w) {
             return;
         }
@@ -1493,7 +1498,7 @@ class Tab implements PictureListener {
      * null or the main window.
      * @return The top window of this tab.
      */
-    WebView getTopWindow() {
+    BrowserWebView getTopWindow() {
         if (mSubView != null) {
             return mSubView;
         }
@@ -1506,7 +1511,7 @@ class Tab implements PictureListener {
      * non-null for the current tab.
      * @return The main WebView of this tab.
      */
-    WebView getWebView() {
+    BrowserWebView getWebView() {
         return mMainView;
     }
 
@@ -1535,7 +1540,7 @@ class Tab implements PictureListener {
         return mSubView;
     }
 
-    void setSubWebView(WebView subView) {
+    void setSubWebView(BrowserWebView subView) {
         mSubView = subView;
     }
 
@@ -1978,9 +1983,14 @@ class Tab implements PictureListener {
 
     public void setAcceptThirdPartyCookies(boolean accept) {
         CookieManager cookieManager = CookieManager.getInstance();
-        if (mMainView != null)
-            cookieManager.setAcceptThirdPartyCookies(mMainView, accept);
-        if (mSubView != null)
-            cookieManager.setAcceptThirdPartyCookies(mSubView, accept);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (mMainView != null)
+                cookieManager.setAcceptThirdPartyCookies(mMainView, accept);
+            if (mSubView != null)
+                cookieManager.setAcceptThirdPartyCookies(mSubView, accept);
+        } else {
+            cookieManager.setAcceptCookie(accept);
+        }
     }
 }

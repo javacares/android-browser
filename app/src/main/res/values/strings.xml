@@ -69,6 +69,36 @@
     <!-- Noun.  The url for the current page. Displayed on the Page Info
             screen. -->
     <string name="page_info_address">Address:</string>
+    <!-- SSL Certificate dialogs -->
+    <!-- Title for an SSL Certificate dialog -->
+    <string name="ssl_certificate">Security certificate</string>
+    <!-- Message on an SSL Certificate dialog -->
+    <string name="ssl_certificate_is_valid">This certificate is valid.</string>
+
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="issued_to">Issued to:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="common_name">Common name:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="org_name">Organization:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="org_unit">Organizational unit:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="issued_by">Issued by:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="validity_period">Validity:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="issued_on">Issued on:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="expires_on">Expires on:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="serial_number">Serial number:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="fingerprints">Fingerprints:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="sha256_fingerprint">SHA-256 fingerprint:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="sha1_fingerprint">SHA-1 fingerprint:</string>
 
     <!-- SSL Error dialogs -->
     <string name="ssl_warnings_header">There are problems with the security certificate for this site.</string>
@@ -761,23 +791,23 @@
 
     <!-- Download History UI strings -->
     <!-- Dialog title [CHAR LIMIT=25] -->
-    <string name="download_no_sdcard_dlg_title" product="nosdcard">USB storage unavailable</string>
+    <!--<string name="download_no_sdcard_dlg_title" product="nosdcard">USB storage unavailable</string>-->
     <!-- Dialog title -->
-    <!--<string name="download_no_sdcard_dlg_title" product="default">No SD card</string>-->
+    <string name="download_no_sdcard_dlg_title" product="default">No SD card</string>
     <!-- Dialog message [CHAR LIMIT=NONE] -->
-    <string name="download_no_sdcard_dlg_msg" product="nosdcard">USB storage is required to download <xliff:g id="filename">%s</xliff:g>.</string>
+    <!--<string name="download_no_sdcard_dlg_msg" product="nosdcard">USB storage is required to download <xliff:g id="filename">%s</xliff:g>.</string>-->
     <!-- Dialog message -->
     <string name="download_no_sdcard_dlg_msg" product="default">An SD card is required to download <xliff:g id="filename">%s</xliff:g>.</string>
     <!-- Title for a dialog informing the user that the SD card used for
             external storage is busy so they cannot download anything [CHAR LIMIT=25] -->
-    <string name="download_sdcard_busy_dlg_title" product="nosdcard">USB storage unavailable</string>
+    <!--<string name="download_sdcard_busy_dlg_title" product="nosdcard">USB storage unavailable</string>-->
     <!-- Title for a dialog informing the user that the SD card used for
             external storage is busy so they cannot download anything -->
     <string name="download_sdcard_busy_dlg_title" product="default">SD card unavailable</string>
     <!-- Message for a dialog informing the user that the SD card used for
             external storage is busy so they cannot download anything.  Informs
             the user how to enable SD card storage [CHAR LIMIT=NONE] -->
-    <string name="download_sdcard_busy_dlg_msg" product="nosdcard">The USB storage is busy. To allow downloads, touch Turn Off USB Storage in the notification.</string>
+    <!--<string name="download_sdcard_busy_dlg_msg" product="nosdcard">The USB storage is busy. To allow downloads, touch Turn Off USB Storage in the notification.</string>-->
     <!-- Message for a dialog informing the user that the SD card used for
             external storage is busy so they cannot download anything.  Informs
             the user how to enable SD card storage -->
@@ -1019,5 +1049,6 @@
     <string name="accessibility_transition_navscreen">Tab management</string>
     <!-- Content description for navigating up in the bookmark folder hierarchy [CHAR LIMIT=NONE] -->
     <string name="accessibility_button_bookmarks_folder_up">Previous folder</string>
+    <string name="sendText">Send</string>
 
 </resources>

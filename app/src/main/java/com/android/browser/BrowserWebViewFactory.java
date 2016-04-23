@@ -17,6 +17,7 @@ package com.android.browser;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.webkit.CookieManager;
@@ -33,19 +34,19 @@ public class BrowserWebViewFactory implements WebViewFactory {
         mContext = context;
     }
 
-    protected WebView instantiateWebView(AttributeSet attrs, int defStyle,
+    protected BrowserWebView instantiateWebView(AttributeSet attrs, int defStyle,
             boolean privateBrowsing) {
         return new BrowserWebView(mContext, attrs, defStyle, privateBrowsing);
     }
 
     @Override
-    public WebView createSubWebView(boolean privateBrowsing) {
+    public BrowserWebView createSubWebView(boolean privateBrowsing) {
         return createWebView(privateBrowsing);
     }
 
     @Override
-    public WebView createWebView(boolean privateBrowsing) {
-        WebView w = instantiateWebView(null, android.R.attr.webViewStyle, privateBrowsing);
+    public BrowserWebView createWebView(boolean privateBrowsing) {
+        BrowserWebView w = instantiateWebView(null, android.R.attr.webViewStyle, privateBrowsing);
         initWebViewSettings(w);
         return w;
     }
@@ -68,9 +69,13 @@ public class BrowserWebViewFactory implements WebViewFactory {
         s.startManagingSettings(w.getSettings());
 
         CookieManager cookieManager = CookieManager.getInstance();
-        cookieManager.setAcceptThirdPartyCookies(w, cookieManager.acceptCookie());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cookieManager.setAcceptThirdPartyCookies(w, cookieManager.acceptCookie());
+        } else {
+            cookieManager.setAcceptCookie(true);
+        }
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // Remote Web Debugging is always enabled, where available.
             WebView.setWebContentsDebuggingEnabled(true);
         }

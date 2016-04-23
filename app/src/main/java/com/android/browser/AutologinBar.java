@@ -40,9 +40,11 @@ public class AutologinBar extends LinearLayout implements OnClickListener,
     protected DeviceAccountLogin mAutoLoginHandler;
     protected ArrayAdapter<String> mAccountsAdapter;
     protected TitleBar mTitleBar;
+    protected Context mContext;
 
     public AutologinBar(Context context) {
         super(context);
+        this.mContext = context;
     }
 
     public AutologinBar(Context context, AttributeSet attrs) {

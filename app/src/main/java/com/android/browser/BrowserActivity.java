@@ -35,7 +35,6 @@ import android.view.View;
 import android.view.Window;
 
 import com.android.browser.stub.NullController;
-import com.google.common.annotations.VisibleForTesting;
 
 public class BrowserActivity extends Activity {
 
@@ -93,7 +92,6 @@ public class BrowserActivity extends Activity {
         return controller;
     }
 
-    @VisibleForTesting
     Controller getController() {
         return (Controller) mController;
     }

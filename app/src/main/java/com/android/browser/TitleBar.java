@@ -60,10 +60,12 @@ public class TitleBar extends RelativeLayout {
     private boolean mSkipTitleBarAnimations;
     private Animator mTitleBarAnimator;
     private boolean mIsFixedTitleBar;
+    private Context mContext;
 
     public TitleBar(Context context, UiController controller, BaseUi ui,
             FrameLayout contentView) {
         super(context, null);
+        mContext = context;
         mUiController = controller;
         mBaseUi = ui;
         mContentView = contentView;
@@ -242,7 +244,7 @@ public class TitleBar extends RelativeLayout {
 
     private int getVisibleTitleHeight() {
         Tab tab = mBaseUi.getActiveTab();
-        WebView webview = tab != null ? tab.getWebView() : null;
+        BrowserWebView webview = tab != null ? tab.getWebView() : null;
         return webview != null ? webview.getVisibleTitleHeight() : 0;
     }
 

@@ -20,11 +20,13 @@ import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Browser;
 import android.text.TextUtils;
@@ -46,7 +48,8 @@ public class DefaultSearchEngine implements SearchEngine {
     public static DefaultSearchEngine create(Context context) {
         SearchManager searchManager =
                 (SearchManager) context.getSystemService(Context.SEARCH_SERVICE);
-        ComponentName name = searchManager.getWebSearchActivity();
+        //TODO QIJB chnaged
+        ComponentName name = searchManager.getGlobalSearchActivity();//searchManager.getWebSearchActivity();
         if (name == null) return null;
         SearchableInfo searchable = searchManager.getSearchableInfo(name);
         if (searchable == null) return null;
@@ -106,9 +109,57 @@ public class DefaultSearchEngine implements SearchEngine {
     }
 
     public Cursor getSuggestions(Context context, String query) {
-        SearchManager searchManager =
-                (SearchManager) context.getSystemService(Context.SEARCH_SERVICE);
-        return searchManager.getSuggestions(mSearchable, query);
+        //TODO QIJB commented
+//        SearchManager manager = (SearchManager) context.getSystemService(Context.SEARCH_SERVICE);
+//        return searchManager.getSuggestions(mSearchable, query);
+        return getSuggestionsCurusor(context, mSearchable, query, -1);
+    }
+
+    //TODO QIJB add
+    private Cursor getSuggestionsCurusor(Context context, SearchableInfo searchable,
+                                         String query, int limit) {
+        if (searchable == null) {
+            return null;
+        }
+
+        String authority = searchable.getSuggestAuthority();
+        if (authority == null) {
+            return null;
+        }
+
+        Uri.Builder uriBuilder = new Uri.Builder()
+                .scheme(ContentResolver.SCHEME_CONTENT)
+                .authority(authority)
+                .query("")  // TODO: Remove, workaround for a bug in Uri.writeToParcel()
+                .fragment("");  // TODO: Remove, workaround for a bug in Uri.writeToParcel()
+
+        // if content path provided, insert it now
+        final String contentPath = searchable.getSuggestPath();
+        if (contentPath != null) {
+            uriBuilder.appendEncodedPath(contentPath);
+        }
+
+        // append standard suggestion query path
+        uriBuilder.appendPath(SearchManager.SUGGEST_URI_PATH_QUERY);
+
+        // get the query selection, may be null
+        String selection = searchable.getSuggestSelection();
+        // inject query, either as selection args or inline
+        String[] selArgs = null;
+        if (selection != null) {    // use selection if provided
+            selArgs = new String[] { query };
+        } else {                    // no selection, use REST pattern
+            uriBuilder.appendPath(query);
+        }
+
+        if (limit > 0) {
+            uriBuilder.appendQueryParameter(SearchManager.SUGGEST_PARAMETER_LIMIT, String.valueOf(limit));
+        }
+
+        Uri uri = uriBuilder.build();
+
+        // finally, make the query
+        return context.getContentResolver().query(uri, null, selection, selArgs, null);
     }
 
     public boolean supportsSuggestions() {
