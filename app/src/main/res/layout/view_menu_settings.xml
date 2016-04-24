@@ -84,13 +84,18 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="?android:attr/dividerVertical" />
+
     <FrameLayout
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize">
         <ImageButton
-            android:background="@drawable/magnifying_glass"
+            android:src="@drawable/ic_settings_holo_dark"
+            android:background="@color/colorPrimary"
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

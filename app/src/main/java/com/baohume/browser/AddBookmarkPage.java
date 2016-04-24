@@ -19,7 +19,6 @@ package com.baohume.browser;
 import com.baohume.browser.addbookmark.FolderSpinner;
 import com.baohume.browser.addbookmark.FolderSpinnerAdapter;
 
-import android.app.Activity;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.AsyncTaskLoader;
@@ -33,6 +32,8 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+
+import com.baohume.common.AppActivity;
 import com.baohume.common.ParseException;
 import android.net.Uri;
 import android.net.WebAddress;
@@ -43,6 +44,7 @@ import android.os.Message;
 import com.baohume.provider.BrowserContract;
 import com.baohume.provider.BrowserContract.Accounts;
 
+import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -66,7 +68,7 @@ import android.widget.Toast;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class AddBookmarkPage extends Activity
+public class AddBookmarkPage extends AppActivity
         implements View.OnClickListener, TextView.OnEditorActionListener,
         AdapterView.OnItemClickListener, LoaderManager.LoaderCallbacks<Cursor>,
         BreadCrumbView.Controller, FolderSpinner.OnSetSelectionListener,
@@ -638,6 +640,10 @@ public class AddBookmarkPage extends Activity
             mCurrentFolder = mMap.getLong(BrowserContract.Bookmarks.PARENT, DEFAULT_FOLDER_ID);
         }
 
+        ActionBar actionBar = this.getSupportActionBar();
+        if(null != actionBar) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         mTitle = (EditText) findViewById(R.id.title);
         mTitle.setText(title);
 

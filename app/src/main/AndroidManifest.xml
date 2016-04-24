@@ -178,7 +178,6 @@
         </activity>
 
         <activity android:name="com.baohume.browser.AddBookmarkPage" android:label="@string/bookmarks_add_page"
-                  android:theme="@style/DialogWhenLarge"
                   android:configChanges="orientation|keyboardHidden|screenSize"
                   android:windowSoftInputMode="adjustResize">
             <intent-filter>
