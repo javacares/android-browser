@@ -31,7 +31,9 @@ import android.view.ActionMode;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.FrameLayout;
 
 import java.util.List;
 
@@ -63,6 +65,13 @@ public class XLargeUi extends BaseUi {
         mActionBar = mActivity.getActionBar();
         setupActionBar();
         setUseQuickControls(BrowserSettings.getInstance().useQuickControls());
+
+        //横屏不需要显示底部导航
+        FrameLayout parent = (FrameLayout)mContentView.getParent().getParent();
+        NavigationBarPhoneBottom bottom = (NavigationBarPhoneBottom)parent.findViewById(R.id.screen_bottom_nav);
+        if(null != bottom) {
+            bottom.setVisibility(View.GONE);
+        }
     }
 
     private void setupActionBar() {

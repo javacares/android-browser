@@ -43,6 +43,7 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 
+import com.baohume.browser.view.SettingMenuView;
 import com.baohume.provider.Browser;
 import com.baohume.provider.BrowserContract;
 import com.baohume.provider.BrowserContract.Images;
@@ -50,6 +51,7 @@ import com.baohume.provider.BrowserContract.Images;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Intents.Insert;
 import android.speech.RecognizerIntent;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
@@ -154,7 +156,7 @@ public class Controller implements WebViewController, UiController, ActivityCont
     // A bitmap that is re-used in createScreenshot as scratch space
     private static Bitmap sThumbnailBitmap;
 
-    private Activity mActivity;
+    private AppCompatActivity mActivity;
     private UI mUi;
     private TabControl mTabControl;
     private BrowserSettings mSettings;
@@ -221,7 +223,7 @@ public class Controller implements WebViewController, UiController, ActivityCont
 
     private String mVoiceResult;
 
-    public Controller(Activity browser) {
+    public Controller(AppCompatActivity browser) {
         mActivity = browser;
         mSettings = BrowserSettings.getInstance();
         mTabControl = new TabControl(this);
@@ -418,7 +420,7 @@ public class Controller implements WebViewController, UiController, ActivityCont
     }
 
     @Override
-    public Activity getActivity() {
+    public AppCompatActivity getActivity() {
         return mActivity;
     }
 
@@ -1467,32 +1469,36 @@ public class Controller implements WebViewController, UiController, ActivityCont
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        updateInLoadMenuItems(menu, getCurrentTab());
-        // hold on to the menu reference here; it is used by the page callbacks
-        // to update the menu based on loading state
-        mCachedMenu = menu;
-        // Note: setVisible will decide whether an item is visible; while
-        // setEnabled() will decide whether an item is enabled, which also means
-        // whether the matching shortcut key will function.
-        switch (mMenuState) {
-            case EMPTY_MENU:
-                if (mCurrentMenuState != mMenuState) {
-                    menu.setGroupVisible(R.id.MAIN_MENU, false);
-                    menu.setGroupEnabled(R.id.MAIN_MENU, false);
-                    menu.setGroupEnabled(R.id.MAIN_SHORTCUT_MENU, false);
-                }
-                break;
-            default:
-                if (mCurrentMenuState != mMenuState) {
-                    menu.setGroupVisible(R.id.MAIN_MENU, true);
-                    menu.setGroupEnabled(R.id.MAIN_MENU, true);
-                    menu.setGroupEnabled(R.id.MAIN_SHORTCUT_MENU, true);
-                }
-                updateMenuState(getCurrentTab(), menu);
-                break;
-        }
-        mCurrentMenuState = mMenuState;
-        return mUi.onPrepareOptionsMenu(menu);
+        SettingMenuView view = new SettingMenuView();
+        view.setUiController(this);
+        view.show(getActivity().getSupportFragmentManager(), "SettingMenu", this);
+        return false;
+//        updateInLoadMenuItems(menu, getCurrentTab());
+//        // hold on to the menu reference here; it is used by the page callbacks
+//        // to update the menu based on loading state
+//        mCachedMenu = menu;
+//        // Note: setVisible will decide whether an item is visible; while
+//        // setEnabled() will decide whether an item is enabled, which also means
+//        // whether the matching shortcut key will function.
+//        switch (mMenuState) {
+//            case EMPTY_MENU:
+//                if (mCurrentMenuState != mMenuState) {
+//                    menu.setGroupVisible(R.id.MAIN_MENU, false);
+//                    menu.setGroupEnabled(R.id.MAIN_MENU, false);
+//                    menu.setGroupEnabled(R.id.MAIN_SHORTCUT_MENU, false);
+//                }
+//                break;
+//            default:
+//                if (mCurrentMenuState != mMenuState) {
+//                    menu.setGroupVisible(R.id.MAIN_MENU, true);
+//                    menu.setGroupEnabled(R.id.MAIN_MENU, true);
+//                    menu.setGroupEnabled(R.id.MAIN_SHORTCUT_MENU, true);
+//                }
+//                updateMenuState(getCurrentTab(), menu);
+//                break;
+//        }
+//        mCurrentMenuState = mMenuState;
+//        return mUi.onPrepareOptionsMenu(menu);
     }
 
     @Override

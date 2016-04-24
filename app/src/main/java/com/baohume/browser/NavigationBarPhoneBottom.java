@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.baohume.browser.view.SettingMenuView;
+
 /**
  * TODO: document your custom view class.
  */
@@ -87,12 +89,17 @@ public class NavigationBarPhoneBottom extends LinearLayout implements View.OnCli
                 }
                 break;
             case R.id.button_home:
+                Tab current = tabControll.getCurrentTab();
+                uiController.loadUrl(current, BrowserSettings.getInstance().getHomePage());
                 break;
             case R.id.button_navi:
                 this.phoneUi.toggleNavScreen();
                 break;
             case R.id.button_settings:
-                uiController.openPreferences();
+                SettingMenuView menuView = new SettingMenuView();
+                menuView.setUiController(uiController);
+                menuView.show(uiController.getActivity().getSupportFragmentManager(),
+                        "PhoneBottomNaiv", uiController);
                 break;
         }
     }

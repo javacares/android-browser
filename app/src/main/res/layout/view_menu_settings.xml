@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/view_menu_settings_row_padding_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/view_menu_setting_bookmark"
+            android:text="@string/save_to_bookmarks"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/ic_new_window_holo_dark"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/view_menu_setting_history"
+            android:text="@string/history"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/ic_history_holo_dark"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        
+        <TextView
+            android:id="@+id/view_menu_setting_download"
+            android:text="@string/menu_view_download"
+            android:drawableTop="@drawable/ic_web_holo_dark"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/view_menu_setting_refresh"
+            android:text="@string/accessibility_button_refresh"
+            android:drawableTop="@drawable/ic_refresh_holo_dark"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/view_menu_settings_row_padding_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/view_menu_setting_setting"
+            android:text="@string/menu_preferences"
+            android:drawableTop="@drawable/ic_querybuilder_normal"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/view_menu_setting_share"
+            android:text="@string/menu_share_url"
+            android:drawableTop="@drawable/ic_share_holo_dark"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/view_menu_setting_tools"
+            android:text="@string/menu_save_snapshot"
+            android:drawableTop="@drawable/ic_windows_holo_dark"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/view_menu_setting_quit"
+            android:text="@string/menu_quit"
+            android:drawableTop="@drawable/trashcan"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize">
+        <ImageButton
+            android:background="@drawable/magnifying_glass"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+</LinearLayout>

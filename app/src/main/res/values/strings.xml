@@ -1095,5 +1095,6 @@
     <string name="theme_preference_key">theme_preference_key</string>
     <!-- suppress MissingTranslation -->
     <string name="theme_preference_default_value">0</string>
+    <string name="menu_quit">Quit</string>
 
 </resources>

@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.ContextMenu;
@@ -35,8 +36,9 @@ import android.view.View;
 import android.view.Window;
 
 import com.baohume.browser.stub.NullController;
+import com.baohume.browser.view.SettingMenuView;
 
-public class BrowserActivity extends Activity {
+public class BrowserActivity extends AppCompatActivity {
 
     public static final String ACTION_SHOW_BOOKMARKS = "show_bookmarks";
     public static final String ACTION_SHOW_BROWSER = "show_browser";
@@ -208,7 +210,9 @@ public class BrowserActivity extends Activity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
+        //TODO QIJB don't show menu instead of popup dialog
+        //super.onPrepareOptionsMenu(menu);
+//        return false;
         return mController.onPrepareOptionsMenu(menu);
     }
 

@@ -18,6 +18,7 @@ package com.baohume.browser;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
@@ -93,7 +94,7 @@ public interface UiController {
 
     void setBlockEvents(boolean block);
 
-    Activity getActivity();
+    AppCompatActivity getActivity();
 
     void showPageInfo();
 

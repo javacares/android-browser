@@ -1,6 +1,8 @@
 package com.baohume.browser;
 
 import android.app.Activity;
+import android.content.res.Configuration;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -26,4 +28,14 @@ public class PhoneUiBottomNav extends PhoneUi {
         mNavigationBarPhoneBottom.setBaseUi(this);
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration config) {
+        super.onConfigurationChanged(config);
+        //屏幕切换时隐藏／显示底部导航
+        if(config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mNavigationBarPhoneBottom.setVisibility(View.GONE);
+        } else {
+            mNavigationBarPhoneBottom.setVisibility(View.VISIBLE);
+        }
+    }
 }
