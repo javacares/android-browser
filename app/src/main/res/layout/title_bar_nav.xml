@@ -116,7 +116,7 @@
         android:id="@+id/tab_switcher"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-            android:contentDescription="@string/accessibility_button_navscreen"
+        android:contentDescription="@string/accessibility_button_navscreen"
         android:src="@drawable/ic_windows_holo_dark"
         style="@style/HoloButton" />
     <ImageButton

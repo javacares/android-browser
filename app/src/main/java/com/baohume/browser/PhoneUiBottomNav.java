@@ -20,6 +20,10 @@ public class PhoneUiBottomNav extends PhoneUi {
         super(browser, controller);
         FrameLayout parent = (FrameLayout)mContentView.getParent().getParent();
         mNavigationBarPhoneBottom = (NavigationBarPhoneBottom)parent.findViewById(R.id.screen_bottom_nav);
+        mNavigationBarPhoneBottom.setTitleBar(this.getTitleBar());
+        mNavigationBarPhoneBottom.setTabControll(this.mTabControl);
+        mNavigationBarPhoneBottom.setUiController(this.mUiController);
+        mNavigationBarPhoneBottom.setBaseUi(this);
     }
 
 }

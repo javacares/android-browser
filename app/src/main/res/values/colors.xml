@@ -45,4 +45,6 @@
     <color name="colorAccent">#ffff8a00</color>
 
     <color name="nav_screen_bg">#CC0d0e0e</color>
+    <color name="bottom_nav_bg">#4CAF50</color>
+
 </resources>
