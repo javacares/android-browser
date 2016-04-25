@@ -25,14 +25,14 @@
         <!-- Drawable to use for generic vertical dividers. -->
         <!--<attr name="dividerVertical" format="reference" />-->
         <!-- @hide Default style for SeekBarDialogPreference. -->
-        <attr name="seekBarDialogPreferenceStyle" format="reference" />
-        <attr name="dialogPreferenceStyle" format="reference" />
+        <!--<attr name="seekBarDialogPreferenceStyle" format="reference" />-->
+        <!--<attr name="dialogPreferenceStyle" format="reference" />-->
         <!-- Default style for seekbar preferences. -->
         <attr name="seekBarPreferenceStyle" format="reference" />
         <!-- Default ScrollView style. -->
         <attr name="scrollViewStyle" format="reference" />
         <!-- Default style for YesNoPreference. -->
-        <attr name="yesNoPreferenceStyle" format="reference" />
+        <!--<attr name="yesNoPreferenceStyle" format="reference" />-->
     </declare-styleable>
 
     <declare-styleable name="ScrollView">
@@ -195,5 +195,7 @@
     <declare-styleable name="SeekBarPreference">
         <attr name="layout" />
     </declare-styleable>
+
+    <!--<attr name="yesNoPreferenceStyle" format="reference" />-->
 
 </resources>

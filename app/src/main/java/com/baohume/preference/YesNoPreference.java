@@ -20,10 +20,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.preference.DialogPreference;
 import android.util.AttributeSet;
 
 import com.baohume.browser.R;
+
 
 /**
  * The {@link YesNoPreference} is a preference to show a dialog with Yes and No
@@ -36,6 +36,12 @@ public class YesNoPreference extends DialogPreference {
 
     public YesNoPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        if(this.getPositiveButtonText() == null) {
+            this.setPositiveButtonText(R.string.pref_yesno_button_positive);
+        }
+        if(null == this.getNegativeButtonText()) {
+            this.setNegativeButtonText(R.string.pref_yesno_button_negative);
+        }
     }
 
     public YesNoPreference(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -43,7 +49,8 @@ public class YesNoPreference extends DialogPreference {
     }
 
     public YesNoPreference(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.yesNoPreferenceStyle);
+        //TODO QIJB should use android.R instead of app
+        this(context, attrs, android.R.attr.yesNoPreferenceStyle);
     }
 
     public YesNoPreference(Context context) {

@@ -38,9 +38,8 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
     private int mMax;
     private boolean mTrackingTouch;
 
-    public SeekBarPreference(
-            Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+    public SeekBarPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr);
 
         TypedArray a = context.obtainStyledAttributes(
                 attrs, R.styleable.ProgressBar, defStyleAttr, defStyleRes);
@@ -50,8 +49,7 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
         a = context.obtainStyledAttributes(attrs,
                 R.styleable.SeekBarPreference, defStyleAttr, defStyleRes);
         final int layoutResId = a.getResourceId(
-                R.styleable.SeekBarPreference_layout,
-                R.layout.preference_widget_seekbar);
+                R.styleable.SeekBarPreference_layout, R.layout.preference_widget_seekbar);
         a.recycle();
 
         setLayoutResource(layoutResId);

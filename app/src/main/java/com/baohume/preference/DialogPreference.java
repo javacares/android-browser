@@ -24,6 +24,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -72,9 +73,8 @@ public abstract class DialogPreference extends Preference implements
     /** Which button was clicked. */
     private int mWhichButtonClicked;
 
-    public DialogPreference(
-            Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+    public DialogPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr);
 
         final TypedArray a = context.obtainStyledAttributes(attrs,
                 R.styleable.DialogPreference, defStyleAttr, defStyleRes);
@@ -88,8 +88,7 @@ public abstract class DialogPreference extends Preference implements
         mDialogIcon = a.getDrawable(R.styleable.DialogPreference_dialogIcon);
         mPositiveButtonText = a.getString(R.styleable.DialogPreference_positiveButtonText);
         mNegativeButtonText = a.getString(R.styleable.DialogPreference_negativeButtonText);
-        mDialogLayoutResId = a.getResourceId(R.styleable.DialogPreference_dialogLayout,
-                mDialogLayoutResId);
+        mDialogLayoutResId = a.getResourceId(R.styleable.DialogPreference_dialogLayout, mDialogLayoutResId);
         a.recycle();
     }
 
@@ -98,7 +97,7 @@ public abstract class DialogPreference extends Preference implements
     }
 
     public DialogPreference(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.dialogPreferenceStyle);
+        this(context, attrs, android.R.attr.dialogPreferenceStyle);
     }
 
     public DialogPreference(Context context) {
@@ -176,7 +175,12 @@ public abstract class DialogPreference extends Preference implements
      * @param dialogIconRes The icon, as a resource ID.
      */
     public void setDialogIcon(@DrawableRes int dialogIconRes) {
-        mDialogIcon = getContext().getDrawable(dialogIconRes);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mDialogIcon = getContext().getDrawable(dialogIconRes);
+        } else {
+            mDialogIcon = getContext().getResources().getDrawable(dialogIconRes);
+        }
     }
     
     /**

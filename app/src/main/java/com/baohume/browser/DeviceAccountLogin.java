@@ -24,8 +24,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.webkit.WebView;
 
-public class DeviceAccountLogin implements
-        AccountManagerCallback<Bundle> {
+public class DeviceAccountLogin implements AccountManagerCallback<Bundle> {
 
     private final Activity mActivity;
     private final WebView mWebView;
@@ -70,8 +69,7 @@ public class DeviceAccountLogin implements
             if (a.name.equals(account)) {
                 // Handle the automatic login case where the service gave us an
                 // account to use.
-                mAccountManager.getAuthToken(a, mAuthToken, null,
-                       mActivity, this, null);
+                mAccountManager.getAuthToken(a, mAuthToken, null, mActivity, this, null);
                 return;
             }
         }

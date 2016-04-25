@@ -1096,5 +1096,7 @@
     <!-- suppress MissingTranslation -->
     <string name="theme_preference_default_value">0</string>
     <string name="menu_quit">Quit</string>
+    <string name="pref_yesno_button_positive">Yes</string>
+    <string name="pref_yesno_button_negative">No</string>
 
 </resources>

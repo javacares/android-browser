@@ -83,8 +83,7 @@ public class PieControl implements PieMenu.PieController, OnClickListener {
     protected void attachToContainer(FrameLayout container) {
         if (mPie == null) {
             mPie = new PieMenu(mActivity);
-            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT,
-                    LayoutParams.MATCH_PARENT);
+            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
             mPie.setLayoutParams(lp);
             populateMenu();
             mPie.setController(this);

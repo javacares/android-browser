@@ -22,7 +22,7 @@ import android.util.AttributeSet;
 
 import com.baohume.preference.YesNoPreference;
 
-class BrowserYesNoPreference extends YesNoPreference {
+public class BrowserYesNoPreference extends YesNoPreference {
 
     // This is the constructor called by the inflater
     public BrowserYesNoPreference(Context context, AttributeSet attrs) {

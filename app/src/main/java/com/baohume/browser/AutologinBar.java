@@ -29,8 +29,7 @@ import android.widget.TextView;
 
 import com.baohume.browser.DeviceAccountLogin.AutoLoginCallback;
 
-public class AutologinBar extends LinearLayout implements OnClickListener,
-        AutoLoginCallback {
+public class AutologinBar extends LinearLayout implements OnClickListener, AutoLoginCallback {
 
     protected Spinner mAutoLoginAccount;
     protected Button mAutoLoginLogin;
