@@ -18,14 +18,19 @@ package com.baohume.preference;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.Preference;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 
 import com.baohume.browser.R;
 
@@ -37,13 +42,19 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
     private int mProgress;
     private int mMax;
     private boolean mTrackingTouch;
+    private int mIconResId;
 
-    public SeekBarPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public SeekBarPreference(Context context,AttributeSet attrs, int defStyleAttr, int defStyleRes){
         super(context, attrs, defStyleAttr);
 
         TypedArray a = context.obtainStyledAttributes(
                 attrs, R.styleable.ProgressBar, defStyleAttr, defStyleRes);
         setMax(a.getInt(R.styleable.ProgressBar_max, mMax));
+        a.recycle();
+
+        a = context.obtainStyledAttributes(
+                attrs, R.styleable.SeekBarPreference, defStyleAttr, defStyleRes);
+        mIconResId = a.getResourceId(R.styleable.SeekBarPreference_prefIcon, 0);
         a.recycle();
 
         a = context.obtainStyledAttributes(attrs,
@@ -75,6 +86,33 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
         seekBar.setMax(mMax);
         seekBar.setProgress(mProgress);
         seekBar.setEnabled(isEnabled());
+
+        final TextView titleView = (TextView) view.findViewById(R.id.title);
+        if (titleView != null) {
+            final CharSequence title = getTitle();
+            if (!TextUtils.isEmpty(title)) {
+                titleView.setText(title);
+                titleView.setVisibility(View.VISIBLE);
+            } else {
+                titleView.setVisibility(View.GONE);
+            }
+        }
+
+        ImageView imageView = (ImageView) view.findViewById(R.id.icon);
+        if(null != imageView) {
+            if (mIconResId != 0) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    imageView.setImageDrawable(getContext().getDrawable(mIconResId));
+                } else {
+                    imageView.setImageDrawable(getContext().getResources().getDrawable(mIconResId));
+                }
+                imageView.setVisibility(View.VISIBLE);
+                ((LinearLayout)imageView.getParent()).setVisibility(View.VISIBLE);
+            } else {
+                imageView.setVisibility(View.GONE);
+                ((LinearLayout)imageView.getParent()).setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override
@@ -84,8 +122,7 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
 
     @Override
     protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
-        setProgress(restoreValue ? getPersistedInt(mProgress)
-                : (Integer) defaultValue);
+        setProgress(restoreValue ? getPersistedInt(mProgress) : (Integer) defaultValue);
     }
 
     @Override

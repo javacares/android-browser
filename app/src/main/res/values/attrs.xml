@@ -32,7 +32,7 @@
         <!-- Default ScrollView style. -->
         <attr name="scrollViewStyle" format="reference" />
         <!-- Default style for YesNoPreference. -->
-        <!--<attr name="yesNoPreferenceStyle" format="reference" />-->
+        <attr name="yesNoPreferenceStyle" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="ScrollView">
@@ -194,8 +194,7 @@
 
     <declare-styleable name="SeekBarPreference">
         <attr name="layout" />
+        <attr name="prefIcon" format="reference" />
     </declare-styleable>
-
-    <!--<attr name="yesNoPreferenceStyle" format="reference" />-->
 
 </resources>

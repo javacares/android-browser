@@ -31,8 +31,7 @@ public class SeekBarSummaryPreference extends SeekBarPreference {
     CharSequence mSummary;
     TextView mSummaryView;
 
-    public SeekBarSummaryPreference(
-            Context context, AttributeSet attrs, int defStyle) {
+    public SeekBarSummaryPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
@@ -68,12 +67,15 @@ public class SeekBarSummaryPreference extends SeekBarPreference {
     protected void onBindView(View view) {
         super.onBindView(view);
         mSummaryView = (TextView) view.findViewById(R.id.text);
-        if (TextUtils.isEmpty(mSummary)) {
-            mSummaryView.setVisibility(View.GONE);
-        } else {
-            mSummaryView.setVisibility(View.VISIBLE);
-            mSummaryView.setText(mSummary);
+        if(null != mSummaryView) {
+            if (TextUtils.isEmpty(mSummary)) {
+                mSummaryView.setVisibility(View.GONE);
+            } else {
+                mSummaryView.setVisibility(View.VISIBLE);
+                mSummaryView.setText(mSummary);
+            }
         }
+
     }
 
     @Override
