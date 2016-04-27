@@ -80,4 +80,7 @@
     at a premium, we don't pre-allocate any space. -->
     <dimen name="preference_icon_minWidth">0dp</dimen>
     <dimen name="view_menu_settings_row_padding_top">20dip</dimen>
+
+    <dimen name="list_view_item_vertical_padding">5dp</dimen>
+
 </resources>

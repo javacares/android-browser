@@ -18,11 +18,13 @@
 
     <header android:fragment="com.baohume.browser.preferences.GeneralPreferencesFragment"
         android:title="@string/pref_general_title"
-    />
+        android:icon="@android:drawable/ic_delete"
+        />
 
     <header android:fragment="com.baohume.browser.preferences.PrivacySecurityPreferencesFragment"
         android:title="@string/pref_privacy_security_title"
-    />
+        android:icon="@android:drawable/ic_delete"
+        />
 
     <header android:fragment="com.baohume.browser.preferences.AccessibilityPreferencesFragment"
         android:title="@string/pref_accessibility_title"
