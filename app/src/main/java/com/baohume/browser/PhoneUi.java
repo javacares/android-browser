@@ -373,8 +373,7 @@ public class PhoneUi extends BaseUi {
         if (mAnimScreen.mMain.getParent() == null) {
             mCustomViewContainer.addView(mAnimScreen.mMain, COVER_SCREEN_PARAMS);
         }
-        mAnimScreen.mMain.layout(0, 0, mContentView.getWidth(),
-                mContentView.getHeight());
+        mAnimScreen.mMain.layout(0, 0, mContentView.getWidth(), mContentView.getHeight());
         mNavScreen.mScroller.finishScroller();
         ImageView target = tabview.mImage;
         int toLeft = 0;
@@ -399,16 +398,11 @@ public class PhoneUi extends BaseUi {
         set1.playTogether(fade1, fade2);
         set1.setDuration(100);
         AnimatorSet set2 = new AnimatorSet();
-        ObjectAnimator l = ObjectAnimator.ofInt(mAnimScreen.mContent, "left",
-                fromLeft, toLeft);
-        ObjectAnimator t = ObjectAnimator.ofInt(mAnimScreen.mContent, "top",
-                fromTop, toTop);
-        ObjectAnimator r = ObjectAnimator.ofInt(mAnimScreen.mContent, "right",
-                fromRight, toRight);
-        ObjectAnimator b = ObjectAnimator.ofInt(mAnimScreen.mContent, "bottom",
-                fromBottom, toBottom);
-        ObjectAnimator scale = ObjectAnimator.ofFloat(mAnimScreen, "scaleFactor",
-                1f, scaleFactor);
+        ObjectAnimator l = ObjectAnimator.ofInt(mAnimScreen.mContent, "left", fromLeft, toLeft);
+        ObjectAnimator t = ObjectAnimator.ofInt(mAnimScreen.mContent, "top", fromTop, toTop);
+        ObjectAnimator r = ObjectAnimator.ofInt(mAnimScreen.mContent, "right", fromRight, toRight);
+        ObjectAnimator b = ObjectAnimator.ofInt(mAnimScreen.mContent, "bottom",fromBottom,toBottom);
+        ObjectAnimator scale = ObjectAnimator.ofFloat(mAnimScreen, "scaleFactor", 1f, scaleFactor);
         ObjectAnimator otheralpha = ObjectAnimator.ofFloat(mCustomViewContainer, "alpha", 1f, 0f);
         otheralpha.setDuration(100);
         set2.playTogether(l, t, r, b, scale);

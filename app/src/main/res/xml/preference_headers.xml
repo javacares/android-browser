@@ -18,24 +18,27 @@
 
     <header android:fragment="com.baohume.browser.preferences.GeneralPreferencesFragment"
         android:title="@string/pref_general_title"
-        android:icon="@android:drawable/ic_delete"
+        android:icon="@android:drawable/ic_dialog_info"
         />
 
     <header android:fragment="com.baohume.browser.preferences.PrivacySecurityPreferencesFragment"
         android:title="@string/pref_privacy_security_title"
-        android:icon="@android:drawable/ic_delete"
+        android:icon="@android:drawable/ic_dialog_alert"
         />
 
     <header android:fragment="com.baohume.browser.preferences.AccessibilityPreferencesFragment"
         android:title="@string/pref_accessibility_title"
+        android:icon="@android:drawable/ic_dialog_map"
     />
 
     <header android:fragment="com.baohume.browser.preferences.AdvancedPreferencesFragment"
         android:title="@string/pref_extras_title"
+        android:icon="@android:drawable/ic_dialog_dialer"
     />
 
     <header android:fragment="com.baohume.browser.preferences.BandwidthPreferencesFragment"
         android:title="@string/pref_data_title"
+        android:icon="@android:drawable/ic_dialog_email"
     />
 
     <header android:fragment="com.baohume.browser.preferences.LabPreferencesFragment"

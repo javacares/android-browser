@@ -50,7 +50,7 @@
         android:layout_height="?android:attr/actionBarSize"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom|center"
-        android:background="@color/bottom_nav_bg"
+        android:background="@color/theme_common_color_c8"
         android:orientation="horizontal"/>
 </merge>
 
